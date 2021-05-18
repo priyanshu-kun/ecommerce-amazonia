@@ -1,0 +1,12 @@
+column_name,content
+country,Country or Region
+isocode,Country code
+year,Index year
+PI,Overall Prosperity Index Score
+rank_PI,Overall Prosperity Index Rank
+"pillarname (soci, busi, etc.)",Score for each Pillar
+rank_pillarname,Ranking for each Pillar
+varname,Country's real value (non-standardised) of the selected variable.
+varname_year,Year in which the data are collected
+Note,"1. Due to terms of the contract, we are not allowed to share data collected by Gallup World Poll, therefore these data are marked as ""***""."
+,"2. Imputed data are specified as their year of collecting is marked as ""--""."
