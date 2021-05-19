@@ -6,6 +6,8 @@ module.exports = {
       backgroundColor: {
         dark: '#000101',
         altDark: '#191918',
+        hoverBlackBg: '#ffffff1a',
+        hoverLightBg: ''
       },
     },
   },
