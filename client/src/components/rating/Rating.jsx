@@ -29,7 +29,7 @@ function Rating({ rating, reviews }) {
                     rating >= 5 ? "fa fa-star" : rating >= 4.5 ? "fa fa-star-half-o" : "fa fa-star-o"
                 }
             ></i> </span>
-            <span>
+            <span className="text-lg">
                 {reviews+' reviews'}
             </span>
         </div>

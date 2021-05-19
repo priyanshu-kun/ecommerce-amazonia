@@ -6,6 +6,7 @@ body {
   margin: 0;
   height: 100vh;
   font-size: 1.6rem;
+
   /* font-family: Helvetica, Arial, sans-serif; */
 }
 
@@ -49,7 +50,7 @@ h2 {
 
 a {
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.6);
+  color: #ffffff99;
   /* color: #ffffff4d; */
 }
 
@@ -60,21 +61,15 @@ a.brand {
   /* font-weight: bold; */
 }
 .row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-}
-.row.center {
-  justify-content: center;
-}
-
-/* Image */
-img {
-  border-radius: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  /* This is better for small screens, once min() is better supported */
+  /* grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); */
+  grid-gap: 2rem;
+  /* background-color: red; */
 }
 
-img.medium {
-  max-width: 29rem;
-  width: 100%;
+.product-list-heading {
+  font-family: 'SF-Pro-Display-Black.otf';
+  font-size: 3.6rem;
 }

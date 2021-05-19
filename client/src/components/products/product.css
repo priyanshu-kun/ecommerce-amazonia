@@ -1,26 +1,35 @@
-
-
-/* Card */
 .card {
-    border: 0.1rem #c0c0c0 solid;
-    background-color: #f8f8f8;
-    border-radius: 0.5rem;
-    margin: 1rem;
-}
-
-.card-body {
-    padding: 1rem;
-}
-
-.card-body a {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    max-height: 50rem;
     color: black;
+    /* background-color: red; */
+    transition: all 0.3s ease;
+}
+.card:hover {
+    border: 1px solid transparent;
+   box-shadow: 0 0 8px 1px rgb(0, 255, 0,0.2);
 }
 
-.card-body>* {
-    margin-bottom: 0.5rem;
+.c-title,.price {
+    font-family: 'SF-Pro-Display-Black.otf';
+    position: relative;
 }
 
-.price {
-    font-size: 2rem;
+.c-title::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 14px;
+    background-color: #34D399;
+    bottom: 10px;
+    left: 50%;
+    border-radius: 3px;
+    transform: translateX(-50%) rotate(-5deg);
+    z-index: -1;
+    transition: all 0.3s cubic-bezier(1, -0.18, 0.65, 2.07);
+    /* transform-origin: left; */
 }
 
+.c-title:hover::after {
+    width: 80%;
+}
