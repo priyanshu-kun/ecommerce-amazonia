@@ -27,7 +27,9 @@ body {
 }
 header {
   grid-area: header;
-  background-color: #203040;
+  overflow: hidden;
+
+  /* background-color: #203040; */
 }
 main {
   grid-area: main;
@@ -60,16 +62,4 @@ a.brand {
   font-size: 3rem;
   /* font-weight: bold; */
 }
-.row {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  /* This is better for small screens, once min() is better supported */
-  /* grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); */
-  grid-gap: 2rem;
-  /* background-color: red; */
-}
 
-.product-list-heading {
-  font-family: 'SF-Pro-Display-Black.otf';
-  font-size: 3.6rem;
-}
