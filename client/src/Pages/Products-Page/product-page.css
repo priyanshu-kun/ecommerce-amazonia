@@ -1,0 +1,36 @@
+
+.product-heading,
+.col-2  li:nth-child(1),
+.col-2  li:nth-child(2),
+.col-2  li:nth-child(4) span:nth-child(2),
+.col-2  li:nth-child(5) span:nth-child(1),
+.seller h1 {
+    font-family: 'SF-Pro-Display-Black.otf';
+}
+
+.row.product-page { 
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-gap: 2rem;
+}
+
+.card-body {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+.list-box::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+.list-box::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+
+@media screen and (max-width: 800px) {
+    .row {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+}

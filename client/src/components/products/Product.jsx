@@ -12,7 +12,7 @@ function Product({id,title,price,description,image,rating,reviews}) {
               </Link>
            </div>
            <hr /> 
-            <div className="h-48 card-body flex flex-col justify-center">
+            <div className="h-48  flex flex-col justify-center">
               <Link to={`/products/${id}`}>
                 <h2 className="text-gray-800 my-2 px-5 text-center c-title">{
                   title.length > 40 ? title = title.substring(0,40)+"..." : title

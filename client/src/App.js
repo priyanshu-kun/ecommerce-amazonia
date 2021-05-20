@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="grid-container">
         <Header />
-        <main className="text-black py-6 px-32  pb-20 sm:px-8">
+        <main className="text-black py-6 px-28  pb-20 sm:px-8">
           <Switch>
             <Route path="/" exact render={(props) => <HomePage Seed={Seed} {...props} />} />
             <Route path="/products/:id" exact render={(props) => <ProductsPage Seed={Seed} {...props} />} />
