@@ -2,6 +2,7 @@ import React from 'react'
 import Rating from "../../Components/rating/Rating"
 import {Link} from "react-router-dom"
 import ListBox from "./ListBox"
+import AddToCart from "../../Assets/add.svg"
 import "./product-page.css"
 
 function ProductsPage({Seed,history, match: {params: {id} } } ) {
@@ -38,8 +39,8 @@ function ProductsPage({Seed,history, match: {params: {id} } } ) {
                         </li>
                     </ul>
                 </div>
-                <div className="col-3">
-                    <div className="card-body  p-8  rounded-xl">
+                <div className="col-3 md:flex md:justify-center">
+                    <div className="card-body  p-8  rounded-xl md:w-full">
                         <div className="my-4 flex w-full justify-between items-center seller">
                             <h1>Seller</h1>
                             <h3 className=" text-2xl opacity-60">Apple</h3>
@@ -74,8 +75,17 @@ function ProductsPage({Seed,history, match: {params: {id} } } ) {
                                 </div>
                             </li>
                             <li className="mt-8 product-page-btn">
-                                <button className="text-white bg-green-500 w-full flex justify-center items-center py-6 rounded-xl mb-3 transition duration-200 hover:bg-green-600">Add to Cart</button>
-                                <button className="border border-green-300 text-green-500 w-full flex justify-center items-center py-6 rounded-xl transition duration-200 hover:border-transparent hover:bg-black  hover:text-white">Buy Now</button>
+                                <button className="
+                                text-white bg-green-500 w-full 
+                                flex justify-center items-center 
+                                py-6 rounded-xl mb-3 transition 
+                                duration-200 hover:bg-green-600">Add to Cart</button>
+                                <button className="
+                                border border-green-300 text-green-500 w-full 
+                                flex justify-center items-center py-6 rounded-xl 
+                                transition duration-200 
+                                hover:border-transparent hover:bg-yellow-500  
+                                hover:text-white">Buy Now</button>
                             </li>
                         </ul>
                     </div>
