@@ -2,7 +2,6 @@ import React from 'react'
 import Rating from "../../Components/rating/Rating"
 import {Link} from "react-router-dom"
 import ListBox from "./ListBox"
-import AddToCart from "../../Assets/add.svg"
 import "./product-page.css"
 
 function ProductsPage({Seed,history, match: {params: {id} } } ) {
