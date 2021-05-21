@@ -21,32 +21,32 @@ function Header() {
             <ul className="
             flex w-2/6 justify-around h-full 
             items-center md:hidden lg:w-3/5">
-                <li>
+                <li className="h-3/5">
                     <Link className="
-                    text-2xl px-6 rounded-lg py-3 
+                    text-2xl px-6 rounded-lg 
                     hover:bg-hoverBlackBg transition 
                     duration-200 flex transform 
-                    scale-90 h-4/5 items-center" to="/cart">
+                    scale-90 h-full  items-center" to="/cart">
                       <img className="mr-2 w-8"  src={shoppingCart} alt="shopping cart" />
                       <span className="">Cart</span>
                       </Link>
                 </li>
-                <li>
+                <li className="h-3/5">
                     <Link className="
-                    text-2xl px-6 rounded-lg py-3 
+                    text-2xl px-6 rounded-lg 
                     hover:bg-hoverBlackBg transition 
                     duration-200 flex transform 
-                    scale-90 h-4/5 items-center" to="/return-and-orders">
+                    scale-90 h-full items-center" to="/return-and-orders">
                       <img className="mr-2 w-8"  src={shoppingBag} alt="shopping bag" />
                       <span className="">Return & Orders</span>
                       </Link>
                 </li>
-                <li>
+                <li className="h-3/5">
                     <Link className="
-                    text-2xl px-6 rounded-lg py-3 
+                    text-2xl px-6 rounded-lg  
                     hover:bg-hoverBlackBg transition 
                     duration-200 flex transform 
-                    scale-90 h-4/5 items-center" to="/signin">
+                    scale-90 h-full items-center" to="/signin">
                       <img className="mr-2 w-6"  src={menu} alt="menu cart" />
                       <span className="">Account & Lists</span>
                       </Link>

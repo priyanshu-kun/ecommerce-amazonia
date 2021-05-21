@@ -14,7 +14,7 @@ function ProductsPage({Seed,history, match: {params: {id} } } ) {
         <div className="">
             <Link to="/" className="product-heading text-black relative top-20 left-6 text-2xl opacity-30" >Home Page &gt;</Link>
             <div className="row product-page mt-36">
-                <div className="col-1">
+                <div className="col-1 flex items-center">
                     <img className="transform scale-95" src={product.image} alt={product.title} />
                 </div>
                 <div className="col-2 pl-16">
