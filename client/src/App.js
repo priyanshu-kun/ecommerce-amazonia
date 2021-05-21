@@ -13,20 +13,27 @@ import './App.css';
 function App() {
   const [Seed, setSeed] = useState(JSON.parse(window.localStorage.getItem("data")) || [])
   // flag to show empty array response from server
-  const [isEmpty, setIsEmpty] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState("")
 
 
   useEffect(() => {
-    if(!Seed.length) {
+    if(!Seed?.length) {
       response().then(data => {
-        if(!data.length) {
-          return setIsEmpty(true)
+        if(!data?.length) {
+          setError("Server is not responding any data")
+          return setLoading(false)
         }
         window.localStorage.setItem("data",JSON.stringify(data));
         setSeed(data)
+      }).catch(e => {
+        console.log(e)
+        setError("Failed to load data from server");
+        setLoading(false)
       })
     }
-  }, [Seed.length])
+  }, [Seed?.length])
+
 
 
   return (
@@ -34,7 +41,7 @@ function App() {
         <Header />
         <main className="text-black py-6 px-28  pb-20 sm:px-8">
           <Switch>
-            <Route path="/" exact render={(props) => <HomePage isEmpty={isEmpty} Seed={Seed} {...props} />} />
+            <Route path="/" exact render={(props) => <HomePage loading={loading} error={error} Seed={Seed} {...props} />} />
             <Route path="/products/:id" exact render={(props) => <ProductsPage Seed={Seed} {...props} />} />
             <Route path="*" exact component={Page404} />
           </Switch>

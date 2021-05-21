@@ -9,7 +9,7 @@ async function response() {
     }
     catch(e) {
         // seed data api fault
-        throw new Error("ERROR: ",e)
+        console.error("ERROR: ",e)
     }
 }
 

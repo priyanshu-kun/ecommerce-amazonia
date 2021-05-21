@@ -7,8 +7,16 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 
 app.get("/api/products",async (req,res) => {
-    const data = await response();
-    res.json(data);
+    try {
+        const data = await response();
+        if(!data) {
+            throw new Error();
+        }
+        res.json(data);
+    }
+    catch(e) {
+        res.status(500).send(e)
+    }
 })
 
 app.get("/",(req,res) => {

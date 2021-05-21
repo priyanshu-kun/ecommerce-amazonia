@@ -46,7 +46,7 @@ function ProductsPage({Seed,history, match: {params: {id} } } ) {
                             <h3 className=" text-2xl opacity-60">Apple</h3>
                         </div>
                         <hr />
-                        <ul>
+                        <ul className="mt-6">
                             <li>
                                 <div className="flex w-full justify-between items-center">
                                     <h1 className="text-2xl opacity-60">Price</h1>
