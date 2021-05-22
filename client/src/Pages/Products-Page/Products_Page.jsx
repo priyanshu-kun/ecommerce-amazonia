@@ -1,22 +1,25 @@
 import React from 'react'
 import Rating from "../../Components/rating/Rating"
+import BasketBall from "../../Assets/Basketball.gif"
 import {Link} from "react-router-dom"
 import ListBox from "./ListBox"
 import "./product-page.css"
 
-function ProductsPage({Seed,history, match: {params: {id} } } ) {
-    const product = Seed.find(item => item.id === parseInt(id,10))
-    if(!product) {
-        return <h1>Product not found</h1>
+function ProductsPage({error,loading,products, match: {params: {id} } } ) {
+    const product = products.length && products.find(item => item.id === parseInt(id,10))
+    if(!product && loading) {
+        return <h1 className="flex items-center justify-start">
+             <img className="mr-2" src={BasketBall} alt="loading" />
+             <span className="font-black">Loading...</span></h1>
     }
     return (
-        <div className="">
-            <Link to="/" className="product-heading text-black relative top-20 left-6 text-2xl opacity-30" >Home Page &gt;</Link>
-            <div className="row product-page mt-36">
+        <div className="mt-24">
+            <Link to="/" className="product-heading text-black  ml-6 text-2xl opacity-30" >Home Page &gt;</Link>
+            <div className="row product-page mt-4">
                 <div className="col-1 flex items-center">
                     <img className="transform scale-95" src={product.image} alt={product.title} />
                 </div>
-                <div className="col-2 pl-16">
+                <div className="col-2 pl-16 md:my-12 sm:my-12">
                     <ul>
                         <li>
                             <h1 className="text-4xl">{product.title}</h1>
