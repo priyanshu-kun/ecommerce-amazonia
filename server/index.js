@@ -18,6 +18,22 @@ app.get("/api/products",async (req,res) => {
         res.status(500).send(e)
     }
 })
+app.get("/api/products/:id",async (req,res) => {
+    try {
+        const data = await response();
+        if(!data) {
+            throw new Error();
+        }
+        const product = data.find(p => p.id === parseInt(req.params.id,10));
+        if(!product) {
+            return res.status(404).json({message: "Product not found!"})
+        }
+        res.json(product);
+    }
+    catch(e) {
+        res.status(500).send(e)
+    }
+})
 
 app.get("/",(req,res) => {
     res.send("Server is ready!")
