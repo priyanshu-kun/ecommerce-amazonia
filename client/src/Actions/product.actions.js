@@ -15,16 +15,7 @@ export const listProducts = () => async (dispatch) => {
         let {data} = await Axios.get("http://localhost:8080/api/products");
         if(!data) {
             throw new Error()
-        }
-        data = data.map(item => (
-            // Math.round((Math.random()*5 + Number.EPSILON)*100)/100 -> round a decimal number to it's 2 places
-            {...item,
-                rating: Math.round(((Math.random() * (5 - 2 + 1) + 2) + Number.EPSILON)*100)/100,
-                reviews: Math.floor(Math.random() * 100)+1,
-                stock: Math.floor(Math.random() * 100)
-            }
-        ))
-        
+        } 
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: data
@@ -49,9 +40,6 @@ export const productDetails = (product_id) => async (dispatch) => {
     })
     try {
         let {data} = await Axios.get(`http://localhost:8080/api/products/${product_id}`);
-        if(!data) {
-            throw new Error()
-        }
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
             payload: data
@@ -60,9 +48,7 @@ export const productDetails = (product_id) => async (dispatch) => {
     catch(e) {
         dispatch({
             type: PRODUCT_DETAILS_FAILURE,
-            payload: e.response && e.response.data.message ? 
-            {msg: e.response.data.message} : 
-            {msg: "ERROR: failed to load data from server"}
+            payload: {msg: "ERROR: failed to load data from server"}
         })
     }
 }

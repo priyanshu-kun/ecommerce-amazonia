@@ -19,12 +19,11 @@ export const productReducers = (state = {products: []},action) => {
            return state
     }
 }
-export const productDetailsReducers = (state = {product: {},loading: true},action) => {
+export const productDetailsReducers = (state = {loading: true,product: {}},action) => {
     switch (action.type) {
         case PRODUCT_DETAILS_REQUEST:
             return {loading: true}
         case PRODUCT_DETAILS_SUCCESS:
-            console.log(action.payload)
             return {loading: false,product: action.payload}
         case PRODUCT_DETAILS_FAILURE:
             return {loading: false,error: action.payload}

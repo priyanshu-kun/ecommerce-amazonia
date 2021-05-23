@@ -28,7 +28,7 @@ function App() {
         <main className="text-black py-6 px-28  pb-20 sm:px-8">
           <Switch>
             <Route path="/" exact render={(props) => <HomePage loading={loading} error={error} products={products} {...props} />} />
-            <Route path="/products/:id" exact render={(props) => <ProductsPage error={error} loading={loading} products={products} {...props} />} />
+            <Route path="/products/:id" exact render={(props) => <ProductsPage  {...props} />} />
             <Route path="*" exact component={Page404} />
           </Switch>
         </main>

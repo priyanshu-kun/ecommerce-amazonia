@@ -1,7 +1,6 @@
 import React,{useEffect} from 'react'
 import { useSelector } from "react-redux"
 import Rating from "../../Components/rating/Rating"
-import BasketBall from "../../Assets/Basketball.gif"
 import { Link } from "react-router-dom"
 import {useDispatch} from "react-redux"
 import ListBox from "./ListBox"
@@ -12,24 +11,23 @@ import "./product-page.css"
 function ProductsPage({match: {params: {id}}}) {
     const dispatch = useDispatch();
     const product_id = id;
-    const getProductDetails = useSelector((state) => state.productsDetail)
+    const getProductDetails = useSelector((state) => state.prodDetails)
     const { error = {}, loading = true, product = {} } = getProductDetails;
-
-    // console.log("Product: ",product,loading)
-
     useEffect(() => {
         dispatch(productDetails(product_id))
-    }, [dispatch,product_id])
+         // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <div className="mt-24">
             <Link to="/" className="product-heading text-black  ml-6 text-2xl opacity-30" >Home Page &gt;</Link>
             {
-                loading ? 
-                    <Preloader />
-                : error ?
-                    <h1>This is the fucking error don't messed up - {error}🙂</h1>
-                :   
+                 
+            loading ? 
+                <Preloader /> :
+                    !error === {} ?
+                <h1>This is the fucking error don't messed up - {error.msg}🙂</h1>
+                : 
                 <div className="row product-page mt-4">
                     <div className="col-1 flex items-center">
                         <img className="transform scale-95" src={product.image} alt={product.title} />
@@ -109,7 +107,7 @@ function ProductsPage({match: {params: {id}}}) {
                     </div>
                 </div>
 
-            }
+             }
         </div>
     )
 }
