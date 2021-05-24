@@ -10,7 +10,6 @@ function Header() {
 
     const _cart = useSelector(state => state.cartReducer)
     const {cart} = _cart;
-    console.log(cart.length)
 
     return (
         <header className="
@@ -32,16 +31,14 @@ function Header() {
                     text-2xl px-6 rounded-lg 
                     hover:bg-hoverBlackBg transition 
                     duration-200 flex transform 
-                    scale-90 h-full  items-center cart" to="/products/cart/:id?">
+                    scale-90 h-full  items-center cart" to="/cart">
                       <img className="mr-2 w-8"  src={shoppingCart} alt="shopping cart" />
                       <span className="">Cart</span>
                         {
-                            cart.length > 0 && <span className="
-                            ml-2 text-base rounded-full 
-                            flex justify-center items-center 
-                            relative  bg-red-500 cart-label">
+                            cart.length > 0 && <div className="
+                            ml-2 cart-label">
                                 {cart.length}
-                            </span>
+                            </div>
                         }
                       </Link>
                 </li>

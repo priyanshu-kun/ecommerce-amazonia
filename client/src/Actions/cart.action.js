@@ -1,5 +1,6 @@
 import { 
-    CART_ADD_ITEMS
+    CART_ADD_ITEMS,
+    CART_DELETE_ITEMS
  } from "../Constants/constants"
 import Axios from "axios"
 
@@ -18,6 +19,20 @@ export const addToCart = (product_id,qty) => async (dispatch,getState) => {
         }
     })
     window.localStorage.setItem("cart",JSON.stringify(getState().cartReducer.cart))
+   }
+   catch(e) {
+    console.log("Failed to add to cart: ",e)
+   }
+}
+export const deleteToCart = (product_id) => async (dispatch,getState) => {
+   try {
+        dispatch({
+            type: CART_DELETE_ITEMS,
+            payload: {
+              product: product_id
+            }
+        })
+        window.localStorage.setItem("cart",JSON.stringify(getState().cartReducer.cart))
    }
    catch(e) {
     console.log("Failed to add to cart: ",e)

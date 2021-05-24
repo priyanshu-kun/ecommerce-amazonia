@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import Rating from "../../Components/rating/Rating"
 import { Link } from "react-router-dom"
 import {useDispatch} from "react-redux"
-import ListBox from "./ListBox"
+import ListBox from "./ProductListBox"
 import Preloader from "../../Components/preloader/Preloader"
 import {productDetails} from "../../Actions/product.actions"
 import "./product-page.css"
@@ -50,7 +50,7 @@ function ProductsPage({history,match: {params: {id}}}) {
     }, [])
 
     const handleCartSubmit = () => {
-        history.push(`/products/cart/${product_id}?qty=${selected.num}`)
+        history.push(`/cart/${product_id}?qty=${selected.num}`)
     }
 
     return (

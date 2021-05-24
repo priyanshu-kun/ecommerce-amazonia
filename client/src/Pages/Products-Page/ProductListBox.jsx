@@ -10,9 +10,6 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 export default function ListBox({Qty,selected,setSelected}) {
 
  
-  // set Quantity state in product page
-  // setQty(selected)
-
   return (
     <div className="w-24">
       <Listbox value={selected} onChange={setSelected}>
