@@ -111,11 +111,10 @@ function Cart({history,location:{search},match:{params:{id}}}) {
                             <h1 className="text-2xl opacity-60">Total Price</h1>
                             <div 
                             className="price text-3xl text-green-500">
-                                ${Math.floor(cart.reduce((a,c) => a+c.price*c.qty,0))}
+                                ${Math.round(cart.reduce((a,c) => a+c.price*c.qty,0) * 100) / 100}
                             </div>
                         </div>
                     </li>
-                   
                     <li className="mt-8 product-page-btn">
                        {
                            cart.length ?  <button 
