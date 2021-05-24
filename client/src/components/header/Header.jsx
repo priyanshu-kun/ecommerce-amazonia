@@ -1,11 +1,17 @@
 import React from 'react'
 import shoppingBag from "../../Assets/shopping-bag.svg"
 import shoppingCart from "../../Assets/shopping-cart.svg"
+import {useSelector} from "react-redux"
 import menu from "../../Assets/menu.svg"
 import {Link} from "react-router-dom"
 import "./header.css"
 
 function Header() {
+
+    const _cart = useSelector(state => state.cartReducer)
+    const {cart} = _cart;
+    console.log(cart.length)
+
     return (
         <header className="
                     flex justify-between 
@@ -26,9 +32,17 @@ function Header() {
                     text-2xl px-6 rounded-lg 
                     hover:bg-hoverBlackBg transition 
                     duration-200 flex transform 
-                    scale-90 h-full  items-center" to="/cart">
+                    scale-90 h-full  items-center cart" to="/products/cart/:id?">
                       <img className="mr-2 w-8"  src={shoppingCart} alt="shopping cart" />
                       <span className="">Cart</span>
+                        {
+                            cart.length > 0 && <span className="
+                            ml-2 text-base rounded-full 
+                            flex justify-center items-center 
+                            relative  bg-red-500 cart-label">
+                                {cart.length}
+                            </span>
+                        }
                       </Link>
                 </li>
                 <li className="h-3/5">

@@ -45,9 +45,7 @@ function ProductsPage({history,match: {params: {id}}}) {
     
 
     useEffect(() => {
-        if(loading) {
-            dispatch(productDetails(product_id))
-        }
+        dispatch(productDetails(product_id))
          // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
