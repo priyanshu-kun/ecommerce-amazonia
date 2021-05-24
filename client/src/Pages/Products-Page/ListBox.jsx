@@ -1,35 +1,17 @@
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import "./product-page.css"
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
 
-const Qty = [
-  { num: '1'},
-  { num: '2' },
-  { num: '3' },
-  { num: '4'},
-  { num: '5' },
-  { num: '6'},
-  { num: '7'},
-  { num: '8'},
-  { num: '9'},
-  { num: '10'},
-  { num: '11'},
-  { num: '12'},
-  { num: '13'},
-  { num: '14'},
-  { num: '15'},
-  { num: '16'},
-  { num: '17'},
-  { num: '18'},
-  { num: '19'},
-  { num: '20'},
-]
 
 
-export default function Example() {
-  const [selected, setSelected] = useState(Qty[0])
+
+export default function ListBox({Qty,selected,setSelected}) {
+
+ 
+  // set Quantity state in product page
+  // setQty(selected)
 
   return (
     <div className="w-24">
@@ -50,9 +32,16 @@ export default function Example() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="list-box absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Listbox.Options className="
+            list-box absolute w-full py-1 mt-1 
+            overflow-auto text-base bg-white 
+            rounded-md shadow-lg max-h-60 
+            ring-1 ring-black ring-opacity-5 
+            focus:outline-none sm:text-sm"
+            >
               {Qty.map((n, nIdx) => (
                 <Listbox.Option
+                  
                   key={nIdx}
                   className={({ active }) =>
                     `text-center pl-1  ${active ? 'text-green-800 bg-green-100' : 'text-gray-900'}

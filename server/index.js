@@ -33,13 +33,13 @@ app.get("/api/products/:id",async (req,res) => {
             throw new Error();
         }
         let product = data.find(p => p.id === parseInt(req.params.id,10));
+        if(!product) {
+            return res.status(404).json({message: "Product not found!"})
+        }
         product =  {...product,
             rating: Math.round(((Math.random() * (5 - 2 + 1) + 2) + Number.EPSILON)*100)/100,
             reviews: Math.floor(Math.random() * 100)+1,
             stock: Math.floor(Math.random() * 100)
-        }
-        if(!product) {
-            return res.status(404).json({message: "Product not found!"})
         }
         res.json(product);
     }

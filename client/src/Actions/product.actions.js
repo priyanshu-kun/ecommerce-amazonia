@@ -22,6 +22,7 @@ export const listProducts = () => async (dispatch) => {
         })
     }
     catch(e) {
+        console.log(e.response)
         dispatch({
             type: PRODUCT_LIST_FAILURE,
             payload: {
@@ -46,9 +47,10 @@ export const productDetails = (product_id) => async (dispatch) => {
         })
     }
     catch(e) {
+        console.log()
         dispatch({
             type: PRODUCT_DETAILS_FAILURE,
-            payload: {msg: "ERROR: failed to load data from server"}
+            payload: e.response.data.message ? {msg: e.response.data.message} : {msg: "ERROR: failed to load data from server🙂"}
         })
     }
 }

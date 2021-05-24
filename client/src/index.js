@@ -6,6 +6,10 @@ import { BrowserRouter} from "react-router-dom";
 import App from './App';
 import store from './store';
 
+store.subscribe(() => {
+  console.log("State changes: ",store.getState())
+})
+
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>

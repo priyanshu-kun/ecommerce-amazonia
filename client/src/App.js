@@ -7,6 +7,7 @@ import Header from "./Components/header/Header"
 import Page404 from "./Pages/404-Page/Page404"
 import {useDispatch, useSelector} from "react-redux"
 import {listProducts} from "./Actions/product.actions"
+import Cart from "./Pages/Cart/Cart"
 import './App.css';
 
 
@@ -29,6 +30,7 @@ function App() {
           <Switch>
             <Route path="/" exact render={(props) => <HomePage loading={loading} error={error} products={products} {...props} />} />
             <Route path="/products/:id" exact render={(props) => <ProductsPage  {...props} />} />
+            <Route path="/products/cart/:id?" exact render={(props) => <Cart  {...props} />} />
             <Route path="*" exact component={Page404} />
           </Switch>
         </main>

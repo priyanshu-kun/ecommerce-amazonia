@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import { useSelector } from "react-redux"
 import Rating from "../../Components/rating/Rating"
 import { Link } from "react-router-dom"
@@ -8,15 +8,52 @@ import Preloader from "../../Components/preloader/Preloader"
 import {productDetails} from "../../Actions/product.actions"
 import "./product-page.css"
 
-function ProductsPage({match: {params: {id}}}) {
+// Quantity counts
+const Qty = [
+    { num: '1'},
+    { num: '2' },
+    { num: '3' },
+    { num: '4'},
+    { num: '5' },
+    { num: '6'},
+    { num: '7'},
+    { num: '8'},
+    { num: '9'},
+    { num: '10'},
+    { num: '11'},
+    { num: '12'},
+    { num: '13'},
+    { num: '14'},
+    { num: '15'},
+    { num: '16'},
+    { num: '17'},
+    { num: '18'},
+    { num: '19'},
+    { num: '20'},
+  ]
+
+function ProductsPage({history,match: {params: {id}}}) {
+
+
+    //for controling quantity select values
+    const [selected, setSelected] = useState(Qty[0])
+
     const dispatch = useDispatch();
     const product_id = id;
     const getProductDetails = useSelector((state) => state.prodDetails)
     const { error = {}, loading = true, product = {} } = getProductDetails;
+    
+
     useEffect(() => {
-        dispatch(productDetails(product_id))
+        if(loading) {
+            dispatch(productDetails(product_id))
+        }
          // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    const handleCartSubmit = () => {
+        history.push(`/products/cart/${product_id}?qty=${selected.num}`)
+    }
 
     return (
         <div className="mt-24">
@@ -25,14 +62,14 @@ function ProductsPage({match: {params: {id}}}) {
                  
             loading ? 
                 <Preloader /> :
-                    !error === {} ?
-                <h1>This is the fucking error don't messed up - {error.msg}🙂</h1>
+                    error.msg !== undefined ?
+                <h1 className="p-12 rounded-2xl mt-12 bg-red-100 text-red-700">This is the fucking error don't messed up - {error.msg}🙂</h1>
                 : 
                 <div className="row product-page mt-4">
-                    <div className="col-1 flex items-center">
-                        <img className="transform scale-95" src={product.image} alt={product.title} />
+                    <div style={{border: "1px solid rgba(0,0,0,0.12)"}}  className="col-1 flex items-center rounded-2xl">
+                        <img className="transform scale-75" src={product.image} alt={product.title} />
                     </div>
-                    <div className="col-2 pl-16 md:my-12 sm:my-12">
+                    <div className="col-2 pl-16 md:my-6 sm:my-6 rounded-2xl pt-8 pb-6">
                         <ul>
                             <li>
                                 <h1 className="text-4xl">{product.title}</h1>
@@ -55,7 +92,7 @@ function ProductsPage({match: {params: {id}}}) {
                         </ul>
                     </div>
                     <div className="col-3 md:flex md:justify-center">
-                        <div className="card-body  p-8  rounded-xl md:w-full">
+                        <div className="card-body p-8 rounded-xl md:w-full">
                             <div className="my-4 flex w-full justify-between items-center seller">
                                 <h1>Seller</h1>
                                 <h3 className=" text-2xl opacity-60">Apple</h3>
@@ -85,23 +122,25 @@ function ProductsPage({match: {params: {id}}}) {
                                     <div className="flex w-full justify-between items-center -mt-2">
                                         <h1 className="text-2xl opacity-60">Qty</h1>
                                         <div className="price text-3xl">
-                                            <ListBox />
+                                            <ListBox Qty={Qty} selected={selected} setSelected={setSelected} />
                                         </div>
                                     </div>
                                 </li>
-                                <li className="mt-8 product-page-btn">
+                                {
+                                    product.stock > 0 && <li className="mt-8 product-page-btn">
+                                    <button onClick={handleCartSubmit} className="
+                                          text-white bg-green-500 w-full 
+                                          flex justify-center items-center 
+                                          py-6 rounded-xl mb-3 transition 
+                                          duration-200 hover:bg-green-600">Add to Cart</button>
                                     <button className="
-                          text-white bg-green-500 w-full 
-                          flex justify-center items-center 
-                          py-6 rounded-xl mb-3 transition 
-                          duration-200 hover:bg-green-600">Add to Cart</button>
-                                    <button className="
-                          border border-green-300 text-green-500 w-full 
-                          flex justify-center items-center py-6 rounded-xl 
-                          transition duration-200 
-                          hover:border-transparent hover:bg-yellow-500  
-                          hover:text-white">Buy Now</button>
-                                </li>
+                                          border border-green-300 text-green-500 w-full 
+                                          flex justify-center items-center py-6 rounded-xl 
+                                          transition duration-200 
+                                          hover:border-transparent hover:bg-yellow-500  
+                                          hover:text-white">Buy Now</button>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </div>
@@ -113,9 +152,3 @@ function ProductsPage({match: {params: {id}}}) {
 }
 
 export default ProductsPage
-
-
-
-/**
- * 
- */
