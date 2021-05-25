@@ -1,23 +1,49 @@
 const express = require("express");
-const response = require("../ServerSeed/seed")
+// const response = require("../ServerSeed/seed")
+const productSeed = require("../ServerSeed/seed")
+const productModal = require("../models/product.model")
 const router = express.Router()
 
 
-router.get("/",async (req,res) => {
+router.get("/seed",async (req,res) => {
     try {
-        let data = await response();
+        const products = await productModal.find({});
+        if(products.length) {
+            return res.json({products})
+        }
+        let data = await productSeed()
         if(!data) {
             throw new Error();
         }
         data = data.map(item => (
             // Math.round((Math.random()*5 + Number.EPSILON)*100)/100 -> round a decimal number to it's 2 places
-            {...item,
+            {   
+                title: item.title,
+                price: item.price,
+                description: item.description,
+                category: item.category,
+                image: item.image,
                 rating: Math.round(((Math.random() * (5 - 2 + 1) + 2) + Number.EPSILON)*100)/100,
                 reviews: Math.floor(Math.random() * 100)+1,
                 stock: Math.floor(Math.random() * 100)
             }
         ))
-        res.json(data);
+        const createdProducts = await productModal.insertMany(data);
+        res.json({createdProducts})
+    }
+    catch(e) {
+        res.status(500).json(e)
+    }
+})
+
+
+router.get("/",async (req,res) => {
+    try {
+        const products = await productModal.find({});
+        if(!products) {
+            throw new Error();
+        }
+        res.json(products);
     }
     catch(e) {
         res.status(500).send(e)
@@ -25,18 +51,9 @@ router.get("/",async (req,res) => {
 })
 router.get("/:id",async (req,res) => {
     try {
-        const data = await response();
-        if(!data) {
-            throw new Error();
-        }
-        let product = data.find(p => p.id === parseInt(req.params.id,10));
+        const product = await productModal.findById({_id: req.params.id})
         if(!product) {
-            return res.status(404).json({message: "Product not found!"})
-        }
-        product =  {...product,
-            rating: Math.round(((Math.random() * (5 - 2 + 1) + 2) + Number.EPSILON)*100)/100,
-            reviews: Math.floor(Math.random() * 100)+1,
-            stock: Math.floor(Math.random() * 100)
+            return res.status(404).json({message: "Product not found"})
         }
         res.json(product);
     }

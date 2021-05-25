@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import {Link} from "react-router-dom"
 import {useDispatch,useSelector} from "react-redux"
 import MessageBox from "./MessageBox"
@@ -20,6 +20,7 @@ function Cart({history,location:{search},match:{params:{id}}}) {
         }
     }, [dispatch,id,cart_Qty])
 
+  
 
     const removeFromCart = (product) => {
         dispatch(deleteToCart(product))
@@ -66,6 +67,8 @@ function Cart({history,location:{search},match:{params:{id}}}) {
                                                    className="border px-2 text-lg py-3 rounded-lg" 
                                                    value={qty} onChange={(e) => {
                                                        dispatch(addToCart(product,Number(e.target.value)))
+                                                       history.push("/cart")
+                                                      
                                                    }} name="qty" id="qty">
                                                        {
                                                            [...Array(stock).keys()].map(i => {

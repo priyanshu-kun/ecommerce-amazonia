@@ -1,13 +1,13 @@
 const express = require("express");
 // eslint-disable-next-line no-unused-vars
-const response = require("../ServerSeed/user.seed")
+const userResponse = require("../ServerSeed/user.seed")
 const userModal = require("../models/users.model")
 const router = express.Router()
 
 router.get("/seed",async (req,res) => {
    try {
-    await userModal.deleteMany({})
-    const createdUsers = await userModal.insertMany(response.users)
+    // await userModal.deleteMany({})
+    const createdUsers = await userModal.insertMany(userResponse.users)
     res.send({createdUsers})
    }
    catch(e) {

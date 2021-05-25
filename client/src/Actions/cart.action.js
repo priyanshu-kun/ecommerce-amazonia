@@ -6,7 +6,7 @@ import Axios from "axios"
 
 export const addToCart = (product_id,qty) => async (dispatch,getState) => {
    try {
-    let {data:{title,image,price,stock,id}} = await Axios.get(`http://localhost:8080/api/products/${product_id}`);
+    let {data:{title,image,price,stock,_id}} = await Axios.get(`http://localhost:8080/api/products/${product_id}`);
     dispatch({
         type: CART_ADD_ITEMS,
         payload: {
@@ -14,7 +14,7 @@ export const addToCart = (product_id,qty) => async (dispatch,getState) => {
             image,
             price,
             stock,
-            product: id,
+            product: _id,
             qty
         }
     })
