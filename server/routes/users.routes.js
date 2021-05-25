@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get("/seed",async (req,res) => {
    try {
-    await userModal.remove({})
+    await userModal.deleteMany({})
     const createdUsers = await userModal.insertMany(response.users)
     res.send({createdUsers})
    }
