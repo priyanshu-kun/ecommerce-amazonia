@@ -14,6 +14,7 @@
 .cart-heading {
     font-family: 'SF-Pro-Display-Black.otf';
     position: relative;
+    width: fit-content
 }
 
 .cart-heading::before {
@@ -21,7 +22,7 @@
     position: absolute;
     bottom: 0;
     left: -2px;
-    width: 30%;
+    width: 110%;
     height: 0;
     background-color: #10B981;
     z-index: -1;
