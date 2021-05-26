@@ -56,7 +56,13 @@ function Signin({ history, location }) {
                         <input onChange={handleChange} value={inputChange.password} name="password" className="block w-full border border-transparent px-6 py-5 outline-none hover:bg-transparent hover:shadow-input  hover:border-gray-300 focus:border-gray-300 hover:border-opacity-60 focus:border-opacity-60 focus:bg-transparent focus:shadow-input rounded-xl transition duration-200 placeholder-gray-400" type="password" id="password" placeholder="Password" />
                     </label>
                     <div className="my-8 w-full">
-                        <button className="w-full bg-green-500 py-6 text-center rounded-xl text-white transition duration-200 hover:bg-green-700" type="submit">Submit</button>
+                        <button className="w-full bg-green-500 py-6 mb-4 text-center rounded-xl text-white transition duration-200 hover:bg-green-700" type="submit">Submit</button>
+
+                        <button className="w-full bg-yellow-500 py-6 text-center rounded-xl text-white transition duration-200 hover:bg-yellow-700" type="button" onClick={(e) => {
+                            e.preventDefault()
+                            const guestCradentials = {email: "admin@guest.google.com",password: "guest"}
+                            dispatch(userSignIn(guestCradentials))
+                        }}>Guest Login</button>
                     </div>
                 </form>
                 <div>

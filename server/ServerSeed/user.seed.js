@@ -2,9 +2,9 @@ const bcrypt = require("bcryptjs");
 module.exports = {
     users: [
         {
-            name: "priyanshu",
-            email: "admin@example.google.com",
-            password: bcrypt.hashSync("xyzabcnycdom",12),
+            name: "guest",
+            email: "admin@guest.google.com",
+            password: bcrypt.hashSync("guest",12),
             isAdmin: true
         },
         {
