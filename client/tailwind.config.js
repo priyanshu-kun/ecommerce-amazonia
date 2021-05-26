@@ -9,6 +9,9 @@ module.exports = {
         hoverBlackBg: '#ffffff1a',
         hoverLightBg: ''
       },
+      boxShadow: {
+        input: "0 0 0 4px rgb(52, 211, 153,0.3)"
+      },
       stroke: theme => ({
         'iconTheme': '#fff'
       }),

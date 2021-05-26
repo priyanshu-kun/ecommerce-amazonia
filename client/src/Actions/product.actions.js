@@ -25,7 +25,7 @@ export const listProducts = () => async (dispatch) => {
         dispatch({
             type: PRODUCT_LIST_FAILURE,
             payload: {
-                msg: "ERROR: for fetching products"
+                msg: "ERROR: Failed to fetch product form server🙂"
             }
         })
     }

@@ -1,0 +1,13 @@
+.signin-heading {
+    font-family: 'SF-Pro-Display-Black.otf';
+    /* color: rgb(52, 211, 153,0.6); */
+}
+
+.signin-box {
+    max-width: 60rem;
+    min-width: 40rem;
+}
+
+.signin-box input {
+    background-color: #F6F7F7;
+}
