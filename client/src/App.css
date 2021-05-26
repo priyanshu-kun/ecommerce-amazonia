@@ -27,9 +27,6 @@ body {
 }
 header {
   grid-area: header;
-  overflow: hidden;
-
-  /* background-color: #203040; */
 }
 main {
   grid-area: main;

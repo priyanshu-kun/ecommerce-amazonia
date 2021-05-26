@@ -1,15 +1,25 @@
 import React from 'react'
 import shoppingBag from "../../Assets/shopping-bag.svg"
 import shoppingCart from "../../Assets/shopping-cart.svg"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import menu from "../../Assets/menu.svg"
 import {Link} from "react-router-dom"
+import caretDown from "../../Assets/chevron-down.svg"
 import "./header.css"
+import signOut from "../../Assets/logout.svg"
+import { userSignout } from '../../Actions/user.auth.action'
 
 function Header() {
 
     const _cart = useSelector(state => state.cartReducer)
     const {cart} = _cart;
+    const signIn = useSelector(state => state.signIn)
+    const {userInfo={}} = signIn
+    const dispatch = useDispatch();
+
+    const signOutHandler = (e) => {
+        dispatch(userSignout())
+    }
 
     return (
         <header className="
@@ -49,18 +59,46 @@ function Header() {
                     duration-200 flex transform 
                     scale-90 h-full items-center" to="/return-and-orders">
                       <img className="mr-2 w-8"  src={shoppingBag} alt="shopping bag" />
-                      <span className="">Return & Orders</span>
+                      <span className="">Services List</span>
                       </Link>
                 </li>
                 <li className="h-3/5">
-                    <Link className="
-                    text-2xl px-6 rounded-lg  
-                    hover:bg-hoverBlackBg transition 
-                    duration-200 flex transform 
-                    scale-90 h-full items-center" to="/signin">
-                      <img className="mr-2 w-6"  src={menu} alt="menu cart" />
-                      <span className="">Account & Lists</span>
-                      </Link>
+                    {
+                        (userInfo && Object.keys(userInfo).length === 0 && userInfo.constructor === Object) ? 
+                        (
+                            <Link className="
+                                text-2xl px-6 rounded-lg  
+                                 transition bg-green-500
+                                 hover:bg-green-700
+                                 text-white
+                                duration-200 flex transform 
+                                scale-90 h-full items-center" to="/signin">
+                                  <img className="mr-2 w-6"  src={menu} alt="menu cart" />
+                                  <span className="">
+                                    Sign In
+                                  </span>
+                              </Link>
+                        ):(
+                            <Link className="
+                                text-2xl px-6 rounded-lg  
+                                hover:bg-hoverBlackBg transition 
+                                duration-200 flex transform 
+                                scale-90 h-full items-center profile-tab relative" to="#">
+                                    <div className="fixed w-80 top-16 py-3  rounded-xl shadow-sm drop-down">
+                                        <Link className="py-3 pr-3 pl-6 w-full text-gray-800 font-black flex opacity-60" to="#signout" onClick={signOutHandler}>
+                                            <img className="w-6 mr-2" src={signOut} alt="singout " /><span>Sign Out</span>
+                                        </Link>
+                                    </div>
+                                  <img className="mr-2 w-6"  src={menu} alt="menu cart" />
+                                  <span className="">
+                                    {
+                                        userInfo.name 
+                                    }
+                                  </span>
+                                  <img className="-ml-0.5 transform scale-75 transition duration-300" src={caretDown} alt="caret down" />
+                              </Link>
+                        )
+                    }
                 </li>
             </ul>
         </header>

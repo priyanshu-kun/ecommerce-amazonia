@@ -10,13 +10,14 @@ module.exports = {
         hoverLightBg: ''
       },
       boxShadow: {
-        input: "0 0 0 4px rgb(52, 211, 153,0.3)"
+        input: "0 0 0 3px rgb(52, 211, 153,0.3)"
       },
       stroke: theme => ({
         'iconTheme': '#fff'
       }),
       zIndex: {
-        nav: '3870814'
+        nav: '3870814',
+        dropdown: '-1'
       },
       screens: {
         'sm': {'max':'640px'},

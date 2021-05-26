@@ -27,6 +27,7 @@ router.post("/signin",async (req,res) => {
         }
         res.json({
             _id: user._id,
+            name: user.name,
             email: user.email,
             password: user.password,
             isAdmin: user.isAdmin,
