@@ -8,6 +8,7 @@ import Page404 from "./Pages/404-Page/Page404"
 import {useDispatch, useSelector} from "react-redux"
 import {listProducts} from "./Actions/product.actions"
 import Signin from "./Pages/Auth/SignIn/Signin"
+import SignUp from "./Pages/Auth/Register/Register"
 import Cart from "./Pages/Cart/Cart"
 import './App.css';
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/products/:id" exact render={(props) => <ProductsPage  {...props} />} />
             <Route path="/cart/:id?" exact render={(props) => <Cart  {...props} />} />
             <Route path="/signin" exact render={(props) => <Signin  {...props} />} />
+            <Route path="/signup" exact render={(props) => <SignUp  {...props} />} />
             <Route path="*" exact component={Page404} />
           </Switch>
         </main>
