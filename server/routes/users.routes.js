@@ -39,4 +39,31 @@ router.post("/signin",async (req,res) => {
    }
 })
 
+router.post("/signup",async (req,res) => {
+    try {
+        const {name,email,password} = req.body;
+        const user = await userModal.findOne({email});
+        if(user) {
+            return res.status(400).json({message: "Duplicate user"})
+        }
+        const User = new userModal({
+            name,
+            email,
+            password
+        })
+        const savedUser = await User.save()
+        res.json({
+            _id: savedUser._id,
+            name: savedUser.name,
+            email: savedUser.email,
+            password: savedUser.password,
+            isAdmin: savedUser.isAdmin,
+            token: generateTokens(savedUser)
+        })
+    }
+    catch(e) {
+        res.status(500).json(e)
+    }
+})
+
 module.exports = router;

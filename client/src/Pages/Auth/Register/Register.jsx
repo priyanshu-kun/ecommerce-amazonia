@@ -1,5 +1,6 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Link} from "react-router-dom"
+import {useSelector,useDispatch} from "react-redux"
 import "./register.css"
 
 const initialState = {
@@ -9,8 +10,24 @@ const initialState = {
     confirm_password: ""
 }
 
-function Register() {
+function Register({history,location}) {
     const [inputChange, setInputChange] = useState(initialState)
+    const signIn = useSelector(state => state.signIn)
+    const { loading = true, error = {}, userInfo = {} } = signIn
+    const dispatch = useDispatch();
+
+    const redirect = location.search ? location.search.split("=")[1] : '/'
+
+    useEffect(() => {
+        if (!loading && !(error && Object.keys(error).length === 0 && error.constructor === Object)) {
+            return history.push("/signin")
+        }
+
+        else if (!loading && !(userInfo && Object.keys(userInfo).length === 0 && userInfo.constructor === Object)) {
+            history.push(redirect)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [loading,error,userInfo])
 
     const handleInputChange = (e) => {
         setInputChange({ ...inputChange, [e.target.name]: e.target.value })
@@ -18,6 +35,9 @@ function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        if(inputChange.password !== inputChange.confirm_password) {
+            return alert("Invalid confirm password");
+        }
         console.log(inputChange)
         setInputChange(initialState)
     }
