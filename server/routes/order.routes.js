@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.post("/",isAuth,async (req,res) => {
     try {
-        console.log(req.body.orderItems.shippingAddress)
         if(!req.body.orderItems.orderItems.length) {
             return res.status(400).send({message: "Cart is empty"})
         }
@@ -25,6 +24,20 @@ router.post("/",isAuth,async (req,res) => {
     }
     catch(e) {
         res.status(500).json(e)
+    }
+})
+
+router.get("/:id",isAuth, async (req,res) => {
+    try {
+        const order = await orderModal.findById(req.params.id);
+        console.log(order)
+        if(!order) {
+             return res.status(404).send({message: "Order not found"})
+        }
+        res.send(order)
+    }
+    catch(e) {
+        res.status(500).send(e)
     }
 })
 

@@ -14,6 +14,7 @@ import Shipping from "./Pages/Shipping/Shipping"
 import Payment from "./Pages/payment/Payment"
 import PlaceOrder from "./Pages/placeOrder/PlaceOrder"
 import './App.css';
+import OrderDetails from "./Pages/orderDetails/OrderDetails";
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
             <Route path="/shipping" exact render={(props) => <Shipping  {...props} />} />
             <Route path="/payment" exact render={(props) => <Payment  {...props} />} />
             <Route path="/orderPlaced" exact render={(props) => <PlaceOrder  {...props} />} />
+            <Route path="/orderDetails/:id" exact render={(props) => <OrderDetails  {...props} />} />
             <Route path="*" exact component={Page404} />
           </Switch>
         </main>
