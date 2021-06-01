@@ -1,5 +1,7 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Link} from "react-router-dom"
+import {useSelector,useDispatch} from "react-redux"
+import {userSignUp} from "../../../Actions/user.auth.action"
 import "./register.css"
 
 const initialState = {
@@ -9,8 +11,25 @@ const initialState = {
     confirm_password: ""
 }
 
-function Register() {
+function Register({history,location}) {
     const [inputChange, setInputChange] = useState(initialState)
+    const signUp = useSelector(state => state.signUp)
+    const { loading = true, error = {}, userInfo = {} } = signUp
+    const dispatch = useDispatch();
+
+    const redirect = location.search ? location.search.split("=")[1] : '/signin'
+
+    useEffect(() => {
+        // if user had an error with register push to user back to signup route
+        if (!(error && Object.keys(error).length === 0 && error.constructor === Object)) {
+            return history.push("/signup")
+        }
+        // if user successfully register push  user to login page
+        else if (!(userInfo && Object.keys(userInfo).length === 0 && userInfo.constructor === Object) && (error && Object.keys(error).length === 0 && error.constructor === Object)) {
+            history.push("/signin")
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [loading])
 
     const handleInputChange = (e) => {
         setInputChange({ ...inputChange, [e.target.name]: e.target.value })
@@ -18,7 +37,10 @@ function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(inputChange)
+        if(inputChange.password !== inputChange.confirm_password) {
+            return alert("Invalid confirm password");
+        }
+        dispatch(userSignUp(inputChange))
         setInputChange(initialState)
     }
 
@@ -27,8 +49,10 @@ function Register() {
             <div style={{ border: "1px solid rgba(0,0,0,0.1)" }} 
             className="w-5/12 rounded-2xl m-auto p-8 signup-box">
                 <h1 className="text-5xl signup-heading mb-6">Sign Up</h1>
-                <hr className="mb-7" />
-              
+                <hr className={`${(error && Object.keys(error).length === 0 && error.constructor === Object) && "mb-8"}`} />
+                {
+                    !(error && Object.keys(error).length === 0 && error.constructor === Object) && <h1 className="my-6 w-full py-4 text-center bg-red-100 rounded-xl text-red-600 text-2xl">{error.msg}</h1>
+                }
                 <form onSubmit={handleSubmit}>
                      <label htmlFor="name" className=" block mb-6">
                         <p className="mb-3 font-black ml-3">Name</p>
@@ -110,7 +134,7 @@ function Register() {
                 </form>
                 <div>
                     <span className="opacity-60 text-base">Already have account: </span>
-                    <Link className="text-green-500 uppercase font-black text-xl" to="/signin">Please sign In</Link>
+                    <Link className="text-green-500 uppercase font-black text-xl" to="signin">Please sign In</Link>
                 </div>
             </div>
         </div>

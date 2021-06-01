@@ -3,7 +3,10 @@ import {
     USER_SIGNIN_REQUEST,
     USER_SIGNIN_SUCCESS,
     USER_SIGNIN_FAILURE,
-    USER_SIGNOUT
+    USER_SIGNOUT,
+    USER_SIGNUP_REQUEST,
+    USER_SIGNUP_SUCCESS,
+    USER_SIGNUP_FAILURE
 } from "../Constants/constants"
 
 export const userSignIn = ({email,password}) => async (dispatch) => {
@@ -28,14 +31,48 @@ export const userSignIn = ({email,password}) => async (dispatch) => {
     catch(e) {
         dispatch({
             type: USER_SIGNIN_FAILURE,
-            payload: e.response.data.message ? {msg: e.response.data.message} : {msg: "ERROR: failed to load data from server🙂"}
+            payload: e.response.data.message ? {msg: e.response.data.message} : {msg: "ERROR: failed to signin user"}
         })
     }
 }
 
+
+
+export const userSignUp = ({name,email,password}) => async (dispatch) => {
+    dispatch({
+        type: USER_SIGNUP_REQUEST,
+        payload: {
+            name,
+            email,
+            password
+        }
+    })
+   try {
+        const {data} = await Axios("http://localhost:8080/api/users/signup", {
+            method: "POST",
+            data: {name,email,password}
+        })
+        dispatch({
+            type: USER_SIGNUP_SUCCESS,
+            payload: {
+                data
+            }
+        })
+   }
+   catch(e) {
+    dispatch({
+        type: USER_SIGNUP_FAILURE,
+        payload: e.response.data.message ? {msg: e.response.data.message} : {msg: "ERROR: failed to signup user"}
+    })
+   }
+}
+
+
+
 export const userSignout = () => async (dispatch) => {
     localStorage.removeItem("cart");
-    localStorage.removeItem("userInfo")
+    localStorage.removeItem("userInfo") 
+    localStorage.removeItem("shippingAddress") 
     dispatch({
         type: USER_SIGNOUT
     })

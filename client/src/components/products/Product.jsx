@@ -3,7 +3,7 @@ import Rating from "../rating/Rating"
 import {Link} from "react-router-dom"
 import "./product.css"
 
-function Product({_id,title,price,description,image,rating,reviews}) {
+function Product({_id,title,price,image,rating,reviews}) {
     return (
         <div className="rounded-lg card">
            <div className="h-3/4 overflow-hidden flex justify-center items-center ">

@@ -1,6 +1,9 @@
 import { 
     CART_ADD_ITEMS,
-    CART_DELETE_ITEMS
+    CART_DELETE_ITEMS,
+    CART_EMPTY,
+    SAVE_CART_SHIPPING_ADDRESS,
+    SAVE_PAYMENT_METHOD
  } from "../Constants/constants"
 export const productsCartReducer = (state = {loading: true,cart: []},action) => {
     switch (action.type) {
@@ -22,7 +25,22 @@ export const productsCartReducer = (state = {loading: true,cart: []},action) => 
                 ...state,
                 cart: state.cart.filter(item => item.product !== action.payload.product)
             }
+        case SAVE_CART_SHIPPING_ADDRESS:
+            return {
+                ...state,
+                shippingAddress: action.payload
+            }
+        case SAVE_PAYMENT_METHOD:
+            return {
+                ...state,
+                paymentMethod: action.payload
+            }
+        case CART_EMPTY:
+            return {
+                ...state,cart: []
+            }
         default:
            return state
     }
 }
+

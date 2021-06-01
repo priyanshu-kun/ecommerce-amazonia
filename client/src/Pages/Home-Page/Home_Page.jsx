@@ -15,9 +15,7 @@ function HomePage({products,loading,error}) {
              <span className="font-black">Loading...</span></h1>
               : 
               <h1 className="opacity-60 bg-red-200 text-red-600 rounded-lg px-24 py-8 w-full text-center">{error.msg}</h1> 
-              : products.map(item => {
-               return  <Product key={item.id} {...item}  />
-             })
+              : products.map(item => <Product key={item._id}  {...item}  />)
            }
           </div>
         </div>

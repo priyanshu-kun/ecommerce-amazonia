@@ -15,6 +15,7 @@ app.use(cors({
 
 app.use("/api/products",require("./routes/product.routes"))
 app.use("/api/users",require("./routes/users.routes"))
+app.use("/api/order",require("./routes/order.routes"))
 
 
 app.get("/",(req,res) => {

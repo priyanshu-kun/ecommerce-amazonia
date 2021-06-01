@@ -1,0 +1,11 @@
+.shipping-address {
+    font-family: 'SF-Pro-Display-Black.otf';
+}
+
+.checkout-form input {
+    background-color: #F6F7F7;
+}
+
+.shipping-form-box {
+    max-width: 660px;
+}

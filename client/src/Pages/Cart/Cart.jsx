@@ -27,7 +27,7 @@ function Cart({history,location:{search},match:{params:{id}}}) {
     }
 
     const checkoutHandler = () => {
-        history.push(`/signin?redirect=shipping`)
+        history.push(`/shipping`)
     }
 
     return (

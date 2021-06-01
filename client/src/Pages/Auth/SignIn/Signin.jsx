@@ -23,7 +23,7 @@ function Signin({ history, location }) {
         }
 
         else if (!loading && !(userInfo && Object.keys(userInfo).length === 0 && userInfo.constructor === Object)) {
-            history.push(redirect)
+            history.push("/")
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loading])
@@ -60,13 +60,14 @@ function Signin({ history, location }) {
 
                         <button className="w-full bg-yellow-500 py-6 text-center rounded-xl text-white transition duration-200 hover:bg-yellow-700" type="button" onClick={(e) => {
                             e.preventDefault()
-                            const guestCradentials = {email: "admin@guest.google.com",password: "guest"}
+                            const guestCradentials = { email: "admin@guest.google.com", password: "guest" }
                             dispatch(userSignIn(guestCradentials))
                         }}>Guest Login</button>
                     </div>
                 </form>
                 <div>
-                    <span className="opacity-60 text-base">Don't have a account: </span><Link className="text-green-500 uppercase font-black text-xl" to="/signup">Please sign Up</Link>
+                    <span className="opacity-60 text-base">Don't have a account: </span>
+                    <Link className="text-green-500 uppercase font-black text-xl" to="/signup">Please sign Up</Link>
                 </div>
             </div>
         </div>

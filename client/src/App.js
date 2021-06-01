@@ -10,6 +10,9 @@ import {listProducts} from "./Actions/product.actions"
 import Signin from "./Pages/Auth/SignIn/Signin"
 import SignUp from "./Pages/Auth/Register/Register"
 import Cart from "./Pages/Cart/Cart"
+import Shipping from "./Pages/Shipping/Shipping"
+import Payment from "./Pages/payment/Payment"
+import PlaceOrder from "./Pages/placeOrder/PlaceOrder"
 import './App.css';
 
 
@@ -28,13 +31,16 @@ function App() {
   return (
     <div className="grid-container">
         <Header />
-        <main className="text-black py-6 px-28  pb-20 sm:px-8 sm:h-screen">
+        <main className="text-black py-6 px-28  pb-20 sm:px-8 sm:h-auto">
           <Switch>
             <Route path="/" exact render={(props) => <HomePage loading={loading} error={error} products={products} {...props} />} />
             <Route path="/products/:id" exact render={(props) => <ProductsPage  {...props} />} />
             <Route path="/cart/:id?" exact render={(props) => <Cart  {...props} />} />
             <Route path="/signin" exact render={(props) => <Signin  {...props} />} />
             <Route path="/signup" exact render={(props) => <SignUp  {...props} />} />
+            <Route path="/shipping" exact render={(props) => <Shipping  {...props} />} />
+            <Route path="/payment" exact render={(props) => <Payment  {...props} />} />
+            <Route path="/orderPlaced" exact render={(props) => <PlaceOrder  {...props} />} />
             <Route path="*" exact component={Page404} />
           </Switch>
         </main>

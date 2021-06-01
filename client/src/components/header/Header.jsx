@@ -84,10 +84,10 @@ function Header() {
                                 hover:bg-hoverBlackBg transition 
                                 duration-200 flex transform 
                                 scale-90 h-full items-center profile-tab relative" to="#">
-                                    <div className="fixed w-80 top-16 py-3  rounded-xl shadow-sm drop-down">
-                                        <Link className="py-3 pr-3 pl-6 w-full text-gray-800 font-black flex opacity-60" to="#signout" onClick={signOutHandler}>
+                                    <div className="fixed w-80 py-3  rounded-xl shadow-sm drop-down">
+                                        <button type="button" className="py-3 pr-3 pl-6 w-full text-gray-800 font-black flex items-center opacity-60" to="#signout" onClick={signOutHandler}>
                                             <img className="w-6 mr-2" src={signOut} alt="singout " /><span>Sign Out</span>
-                                        </Link>
+                                        </button>
                                     </div>
                                   <img className="mr-2 w-6"  src={menu} alt="menu cart" />
                                   <span className="">

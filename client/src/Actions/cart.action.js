@@ -1,6 +1,8 @@
 import { 
     CART_ADD_ITEMS,
-    CART_DELETE_ITEMS
+    CART_DELETE_ITEMS,
+    SAVE_CART_SHIPPING_ADDRESS,
+    SAVE_PAYMENT_METHOD
  } from "../Constants/constants"
 import Axios from "axios"
 
@@ -37,4 +39,13 @@ export const deleteToCart = (product_id) => async (dispatch,getState) => {
    catch(e) {
     console.log("Failed to add to cart: ",e)
    }
+}
+
+export const saveShippingAddress = (data) => (dispatch) => {
+    dispatch({type: SAVE_CART_SHIPPING_ADDRESS,payload: data})
+    localStorage.setItem("shippingAddress",JSON.stringify(data))
+}
+
+export const savePaymentMethod = (data) => (dispatch) => {
+    dispatch({type: SAVE_PAYMENT_METHOD,payload: data})
 }
