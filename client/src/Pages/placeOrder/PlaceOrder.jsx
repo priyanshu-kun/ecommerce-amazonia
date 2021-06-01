@@ -21,6 +21,7 @@ function PlaceOrder({ history }) {
 
     const orderCreate = useSelector(state => state.orderCreate);
     const {error,success,loading,order} = orderCreate;
+    console.log("order: ",success)
 
     const handlePlaceOrder = () => {
         // handle place order action
@@ -28,8 +29,8 @@ function PlaceOrder({ history }) {
     }
 
     useEffect(() => {
-        if (paymentMethod && Object.keys(paymentMethod).length === 0 && paymentMethod.constructor === Object) {
-            history.push("/payment")
+        if (!cart.length) {
+            history.push("/")
         }
         if(success) {
             history.push(`/orderDetails/${order._id}`)
@@ -146,10 +147,14 @@ function PlaceOrder({ history }) {
                                py-6 rounded-xl mt-10 transition 
                                duration-200 hover:bg-green-600">Place Order</button>
                             {
-                                loading && <img src={circles} alt="preloader" />
+                                 loading && (
+                                     <div className="w-full flex justify-center">
+                                        <img className="w-12" src={circles} alt="preloader" />
+                                    </div>
+                                    )
                             }
                             {
-                                error && <h1>{error.message}</h1>
+                                error && <h1 className="w-full text-center text-xl text-red-600 bg-red-100 mt-2 rounded-lg">{error.message}</h1>
                             }
                     </div>
                 {/* </div> */}

@@ -6,17 +6,18 @@ const router = express.Router();
 
 router.post("/",isAuth,async (req,res) => {
     try {
-        if(!req.body.orderItems.length) {
+        console.log(req.body.orderItems.shippingAddress)
+        if(!req.body.orderItems.orderItems.length) {
             return res.status(400).send({message: "Cart is empty"})
         }
         const order = new orderModal({
-            orderItems: req.body.orderItems,
-            shippingAddress: req.body.shippingAddress,
-            paymentMethod: req.body.shippingAddress,
-            itemsPrice: req.body.itemsPrice,
-            shippingPrice: req.body.shippingPrice,
-            taxPrice: req.body.taxPrice,
-            totalPrice: req.body.totalPrice,
+            orderItems: req.body.orderItems.orderItems,
+            shippingAddress: req.body.orderItems.shippingAddress,
+            paymentMethod: req.body.orderItems.paymentMethod,
+            itemPrice: req.body.orderItems.itemPrice,
+            shippingPrice: req.body.orderItems.shippingPrice,
+            taxPrice: req.body.orderItems.taxPrice,
+            totalPrice: req.body.orderItems.totalPrice,
             user: req.user._id
         })
         const createdOrder = await order.save();

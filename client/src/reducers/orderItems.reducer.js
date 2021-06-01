@@ -8,7 +8,8 @@ export const orderItemsReducer = (state = {},action) => {
     switch (action.type) {
         case ORDER_CREATE_REQUEST:
             return {
-                success: true
+                success: false,
+                loading: true
             }
         case ORDER_CREATE_SUCCESS: 
             return {

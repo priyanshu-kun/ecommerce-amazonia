@@ -10,8 +10,7 @@ const generateTokens = ({_id,email,name,password,isAdmin}) => {
 }
 
 const isAuth = (req,res,next) => {
-    const authorization = req.header.authorization;
-    console.log("Boom: ",req)
+    const authorization = req.headers.authorization;
     if(!authorization) {
        return res.status(401).json({message: "Token not found"})
     }

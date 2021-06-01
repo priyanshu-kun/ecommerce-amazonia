@@ -7,7 +7,7 @@ import App from './App';
 import store from './store';
 
 store.subscribe(() => {
-  console.log("State changes: ",store.getState())
+  console.table({...store.getState()})
 })
 
 ReactDOM.render(

@@ -8,8 +8,7 @@ import "./shipping.css"
 function Shipping({history}) {
 
     const _cart = useSelector(state => state.cartReducer)
-    const {shippingAddress,cart} = _cart 
-    console.log("shippingAddress: ", cart)
+    const {shippingAddress} = _cart 
 
     const initialState = {
         fullName: shippingAddress?.fullName ? shippingAddress.fullName : "",

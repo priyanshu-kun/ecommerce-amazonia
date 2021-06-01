@@ -21,6 +21,7 @@ function Payment({history}) {
         if((shippingAddress && Object.keys(shippingAddress).length === 0 && shippingAddress.constructor === Object)) {
             history.push("/shipping")
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
