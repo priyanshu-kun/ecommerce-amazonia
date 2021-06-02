@@ -11,16 +11,14 @@
     }
 }
 
-.right {
-    max-width: 100%;
-    max-height: auto !important;
-    height: auto !important;
-}
-
 .placeOrder-heading {
     font-family: 'SF-Pro-Display-Black.otf';
 }
 
 .left {
     border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+._height {
+    height: max-content !important;
 }

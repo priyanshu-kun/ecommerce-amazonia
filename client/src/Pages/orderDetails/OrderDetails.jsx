@@ -1,25 +1,61 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import "./orderDetails.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { detailsOrder } from '../../Actions/order.action';
 import Preloader from '../../Components/preloader/Preloader';
+import circles from "../../Assets/Circles-menu-3.gif"
+import {PayPalButton} from "react-paypal-button-v2"
+import axios from 'axios';
 
 function OrderDetails({match:{params:{id}}}) {
+
+    const [sdkReady, setSdkReady] = useState(false)
    
     const {loading,error,order} = useSelector(state => state.orderDetails)
     const dispatch = useDispatch();
 
-    // console.log("ORDER: ",order?.shippingAddress,error,loading)
+    const handleSuccessHandler = () => {
+
+    }
 
     useEffect(() => {
-        dispatch(detailsOrder(id))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+        const addPayPalScript = async () => {
+            try {
+                const {data} = await axios.get("http://localhost:8080/api/config/paypal")
+                const script = document.createElement("script");
+                script.type = 'text/javascript'
+                script.src = `https://www.paypal.com/sdk/js?client-id=${data}`
+                script.async = true
+                script.onload = () => {
+                    setSdkReady(true)
+                }
+                document.body.appendChild(script)
+            }
+            catch(e) {
+                console.error(e)
+            }
+        }
+        if(!order?._id) {
+            dispatch(detailsOrder(id))
+        }
+        else {
+            if(!order?.isPaid) {
+                if(!window.paypal) {
+                    addPayPalScript()
+                }
+                else {
+                    setSdkReady(true)
+                }
+            }
+        }
+        
+        
+    }, [dispatch,order,id,sdkReady])
 
     return loading ? <Preloader />: error ? <h1>{error.message}</h1>: (
         <div>
-            <h1 className="placeOrder-heading -mb-8 mt-4 opacity-60">ORDER ID: {order._id}</h1>
+            <h1 className="placeOrder-heading -mb-8 mt-4 opacity-60">ORDER ID: {order?._id}</h1>
             <div className="list-container mt-16">
                 <div className="left p-8 rounded-xl">
                     <div>
@@ -81,7 +117,7 @@ function OrderDetails({match:{params:{id}}}) {
                         </div>
                     </div>
                 </div>
-                    <div className="card-body right  p-8 rounded-xl">
+                    <div className="card-body p-8 rounded-xl _height">
                         <h1 className="text-black cart-heading">Order Summery</h1>
                         <hr />
                         <ul>
@@ -121,6 +157,21 @@ function OrderDetails({match:{params:{id}}}) {
                                     </div>
                                 </div>
                             </li>
+                           {
+                               !order?.isPaid && (
+                                   <li className="mt-6">
+                                       {
+                                           !sdkReady ? (
+                                            <div className="w-full flex justify-center">
+                                                <img className="w-12" src={circles} alt="preloader" />
+                                             </div>
+                                           ): (
+                                               <PayPalButton amount={order?.totalPrice} onSuccess={handleSuccessHandler}></PayPalButton>
+                                           )
+                                       }
+                                   </li>
+                               )
+                           }
                         </ul>
                     </div>
             </div>

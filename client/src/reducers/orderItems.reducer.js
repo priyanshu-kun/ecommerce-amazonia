@@ -33,7 +33,7 @@ export const orderItemsReducer = (state = {},action) => {
     }
 }
 
-export const orderDetailsReducer = (state = {loading: false,order: {}},action) => {
+export const orderDetailsReducer = (state = {loading: false},action) => {
     switch (action.type) {
         case ORDER_DETAILS_REQUEST:
             return {
