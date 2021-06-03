@@ -16,6 +16,9 @@ app.use(cors({
 app.use("/api/products",require("./routes/product.routes"))
 app.use("/api/users",require("./routes/users.routes"))
 app.use("/api/order",require("./routes/order.routes"))
+app.use("/api/config/paypal",(req,res) => {
+    res.send(process.env.PAYPAL_CLIENT_ID || 'sb')
+})
 
 
 app.get("/",(req,res) => {

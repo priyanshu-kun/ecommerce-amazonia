@@ -23,6 +23,12 @@ const orderSchema = new mongoose.Schema({
         phoneNumber: {type: Number,required: true},
     },
     paymentMethod: {type: String,required: true},
+    paymentResult: {
+        id: String,
+        status: String,
+        updateTime: String,
+        emailAddress: String
+    },
     itemPrice: {type: Number,required: true},
     shippingPrice: {type: Number,required: true},
     taxPrice: {type: Number,required: true},

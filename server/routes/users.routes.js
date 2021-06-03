@@ -35,7 +35,7 @@ router.post("/signin",async (req,res) => {
         })
    }
    catch(e) {
-        res.status(500).json(e)
+        res.status(500).json({error: e.writeErrors[0].errmsg})
    }
 })
 
@@ -62,7 +62,7 @@ router.post("/signup",async (req,res) => {
         })
     }
     catch(e) {
-        res.status(500).json(e)
+        res.status(500).json({error: e.writeErrors[0].errmsg})
     }
 })
 

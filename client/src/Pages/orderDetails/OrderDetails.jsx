@@ -2,21 +2,24 @@ import React, { useEffect,useState } from 'react'
 import "./orderDetails.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { detailsOrder } from '../../Actions/order.action';
+import { detailsOrder, payOrder } from '../../Actions/order.action';
 import Preloader from '../../Components/preloader/Preloader';
 import circles from "../../Assets/Circles-menu-3.gif"
 import {PayPalButton} from "react-paypal-button-v2"
 import axios from 'axios';
+import { ORDER_PAY_RESET } from '../../Constants/constants';
 
 function OrderDetails({match:{params:{id}}}) {
 
     const [sdkReady, setSdkReady] = useState(false)
    
     const {loading,error,order} = useSelector(state => state.orderDetails)
+    const {loading:load,success:successPay,error:err} = useSelector(state => state.orderPay)
     const dispatch = useDispatch();
 
-    const handleSuccessHandler = () => {
-
+    const handleSuccessHandler = (paymentResult) => {
+        console.log("paymentResult: ",paymentResult)
+        dispatch(payOrder(order,paymentResult))
     }
 
     useEffect(() => {
@@ -36,7 +39,8 @@ function OrderDetails({match:{params:{id}}}) {
                 console.error(e)
             }
         }
-        if(!order?._id) {
+        if(!order?._id || successPay || (order && order?._id !== id)) {
+            dispatch({type: ORDER_PAY_RESET})
             dispatch(detailsOrder(id))
         }
         else {
@@ -51,7 +55,7 @@ function OrderDetails({match:{params:{id}}}) {
         }
         
         
-    }, [dispatch,order,id,sdkReady])
+    }, [dispatch,order,id,sdkReady,successPay])
 
     return loading ? <Preloader />: error ? <h1>{error.message}</h1>: (
         <div>
@@ -166,7 +170,19 @@ function OrderDetails({match:{params:{id}}}) {
                                                 <img className="w-12" src={circles} alt="preloader" />
                                              </div>
                                            ): (
-                                               <PayPalButton amount={order?.totalPrice} onSuccess={handleSuccessHandler}></PayPalButton>
+                                            <>
+                                            {
+                                                err && <h1 className="bg-red-100 text-red-600 py-2 text-center rounded-lg mb-3">{err.message}</h1>
+                                            }
+                                            {
+                                                load && (
+                                                    <div className="w-full flex justify-center">
+                                                         <img className="w-12" src={circles} alt="preloader" />
+                                                    </div>
+                                                )
+                                            }
+                                                <PayPalButton amount={order?.totalPrice} onSuccess={handleSuccessHandler}></PayPalButton>
+                                            </>
                                            )
                                        }
                                    </li>

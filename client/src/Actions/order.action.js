@@ -1,4 +1,4 @@
-import { CART_EMPTY, ORDER_CREATE_FAILURE, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS,ORDER_DETAILS_SUCCESS,ORDER_DETAILS_FAILURE, ORDER_DETAILS_REQUEST } from "../Constants/constants"
+import { CART_EMPTY, ORDER_CREATE_FAILURE, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS,ORDER_DETAILS_SUCCESS,ORDER_DETAILS_FAILURE, ORDER_DETAILS_REQUEST, ORDER_PAY_FAILURE, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS } from "../Constants/constants"
 import Axios from "axios"
 
 export const createOrder = (orderItems) => async (dispatch,getState) => {
@@ -52,6 +52,37 @@ export const detailsOrder = (id) => async (dispatch,getState) => {
         dispatch({
             type: ORDER_DETAILS_FAILURE,
             payload: e.response && e.response.data.message ? e.response.data.message : {message: "failed to fetch order details"}
+        })
+    }
+}
+
+
+export const payOrder = (order,paymentResult) => async (dispatch,getState) => {
+    try {
+        dispatch({
+            type: ORDER_PAY_REQUEST,
+            payload: {
+                order,
+                paymentResult
+            }
+        })
+        const {signIn: userInfo} = getState();
+        const {data} = await Axios.put(`http://localhost:8080/api/order/${order._id}/pay`,paymentResult,{
+            headers: {
+                Authorization: `Bearer ${userInfo.userInfo.token}`
+            }
+        })
+
+        dispatch({
+            type: ORDER_PAY_SUCCESS,
+            payload: data
+        })
+
+    }
+    catch(e) {
+        dispatch({
+            type: ORDER_PAY_FAILURE,
+            payload: e.response && e.response.data.message ? e.response.data.message : {message: "failed to pay"}
         })
     }
 }

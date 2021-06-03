@@ -131,12 +131,6 @@ function ProductsPage({history,match: {params: {id}}}) {
                                           flex justify-center items-center 
                                           py-6 rounded-xl mb-3 transition 
                                           duration-200 hover:bg-green-600">Add to Cart</button>
-                                    <button className="
-                                          border border-green-300 text-green-500 w-full 
-                                          flex justify-center items-center py-6 rounded-xl 
-                                          transition duration-200 
-                                          hover:border-transparent hover:bg-yellow-500  
-                                          hover:text-white">Buy Now</button>
                                     </li>
                                 }
                             </ul>

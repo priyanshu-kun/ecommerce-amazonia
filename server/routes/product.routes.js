@@ -32,7 +32,7 @@ router.get("/seed",async (req,res) => {
         res.json({createdProducts})
     }
     catch(e) {
-        res.status(500).json(e)
+        res.status(500).json({error: e.writeErrors[0].errmsg})
     }
 })
 
@@ -46,7 +46,7 @@ router.get("/",async (req,res) => {
         res.json(products);
     }
     catch(e) {
-        res.status(500).send(e)
+        res.status(500).send({error: e.writeErrors[0].errmsg})
     }
 })
 router.get("/:id",async (req,res) => {
@@ -58,7 +58,7 @@ router.get("/:id",async (req,res) => {
         res.json(product);
     }
     catch(e) {
-        res.status(500).send(e)
+        res.status(500).send({error: e.writeErrors[0].errmsg})
     }
 })
 
