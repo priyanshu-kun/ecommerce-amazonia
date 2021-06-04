@@ -83,7 +83,7 @@ function OrderDetails({match:{params:{id}}}) {
                             <p><strong className="font-black">Method</strong>: <span className="text-gray-600">{order?.paymentMethod}</span></p>
                         </div>
                         {
-                            order?.isPaid ? <h1 className="text-xl py-2 pl-6 rounded-lg bg-green-100 text-green-600 mb-4 mt-4">Delivered At {order?.paidAt}</h1> : <h1 className="text-xl py-2 pl-6 rounded-lg bg-red-100 text-red-600 mb-4 mt-4">Not yet Delivered</h1>
+                            order?.isPaid ? <h1 className="text-xl py-2 pl-6 rounded-lg bg-green-100 text-green-600 mb-4 mt-4">Paid At {order?.paidAt}</h1> : <h1 className="text-xl py-2 pl-6 rounded-lg bg-red-100 text-red-600 mb-4 mt-4">Not Paid</h1>
                         }
                     </div>
                     <hr />
@@ -157,7 +157,7 @@ function OrderDetails({match:{params:{id}}}) {
                                     <h1 className="text-2xl opacity-60">Order Total</h1>
                                     <div
                                         className="price text-2xl text-green-500">
-                                        ${order?.totalPrice}
+                                        ${order?.totalPrice.toFixed(2)}
                                     </div>
                                 </div>
                             </li>

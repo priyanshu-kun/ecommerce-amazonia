@@ -47,8 +47,8 @@ function Register({history,location}) {
     return (
         <div className="w-full  mt-20 md:mt-36 sm:mt-60 ">
             <div style={{ border: "1px solid rgba(0,0,0,0.1)" }} 
-            className="w-5/12 rounded-2xl m-auto p-8 signup-box">
-                <h1 className="text-5xl signup-heading mb-6">Sign Up</h1>
+            className="w-1/4 rounded-2xl m-auto p-8 signup-box">
+                <h1 className="text-4xl signup-heading mb-3">Sign Up</h1>
                 <hr className={`${(error && Object.keys(error).length === 0 && error.constructor === Object) && "mb-8"}`} />
                 {
                     !(error && Object.keys(error).length === 0 && error.constructor === Object) && <h1 className="my-6 w-full py-4 text-center bg-red-100 rounded-xl text-red-600 text-2xl">{error.msg}</h1>
@@ -125,7 +125,7 @@ function Register({history,location}) {
                           transition duration-200 placeholder-gray-400" 
                          />
                     </label>
-                    <div className="my-8 w-full">
+                    <div className="mt-8 w-full">
                         <button 
                         className="w-full bg-green-500 py-6 mb-4 
                         text-center rounded-xl text-white transition 
