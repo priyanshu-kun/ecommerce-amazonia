@@ -3,7 +3,7 @@ import {productReducers,productDetailsReducers} from "./reducers/product.reducer
 import { productsCartReducer } from "./reducers/cartReducer"
 import {userSigninReducer,userSignUpReducer} from "./reducers/user.reducer"
 import thunk from "redux-thunk"
-import { orderDetailsReducer, orderItemsReducer, orderPayReducer } from "./reducers/orderItems.reducer"
+import { myOrdersListReducer, orderDetailsReducer, orderItemsReducer, orderPayReducer } from "./reducers/orderItems.reducer"
 
 // connect to google chrome dev tools
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -32,7 +32,8 @@ const reducer = combineReducers({
     signUp: userSignUpReducer,
     orderCreate: orderItemsReducer,
     orderDetails: orderDetailsReducer,
-    orderPay: orderPayReducer
+    orderPay: orderPayReducer,
+    mineOrdersList: myOrdersListReducer
 })
 
 const store = createStore(reducer,initialState,composeEnhancer(applyMiddleware(thunk)));

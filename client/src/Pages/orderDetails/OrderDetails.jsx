@@ -73,7 +73,7 @@ function OrderDetails({match:{params:{id}}}) {
                             <p className="mb-2"><strong className="font-black mr-2">Phone Number: </strong> <span className="text-gray-600">{order?.shippingAddress?.phoneNumber}</span></p>
                         </div>
                         {
-                            order?.isDelivered ? <h1 className="text-xl py-2 pl-6 rounded-lg bg-green-100 text-green-600 mb-4">Delivered At {order?.DeliveredAt}</h1> : <h1 className="text-xl py-2 pl-6 rounded-lg bg-red-100 text-red-600 mb-4">Not yet Delivered</h1>
+                            order?.isDelivered ? <h1 className="text-xl py-4 pl-6 rounded-lg bg-green-100 text-green-600 mb-4">Delivered At {order?.DeliveredAt}</h1> : <h1 className="text-xl py-4 pl-6 rounded-lg bg-red-100 text-red-600 mb-4">Not yet Delivered</h1>
                         }
                     </div>
                     <hr />
@@ -83,7 +83,7 @@ function OrderDetails({match:{params:{id}}}) {
                             <p><strong className="font-black">Method</strong>: <span className="text-gray-600">{order?.paymentMethod}</span></p>
                         </div>
                         {
-                            order?.isPaid ? <h1 className="text-xl py-2 pl-6 rounded-lg bg-green-100 text-green-600 mb-4 mt-4">Paid At {order?.paidAt}</h1> : <h1 className="text-xl py-2 pl-6 rounded-lg bg-red-100 text-red-600 mb-4 mt-4">Not Paid</h1>
+                            order?.isPaid ? <h1 className="text-xl py-4 pl-6 rounded-lg bg-green-100 text-green-600 mb-4 mt-4">Paid At {order?.paidAt}</h1> : <h1 className="text-xl py-4 pl-6 rounded-lg bg-red-100 text-red-600 mb-4 mt-4">Not Paid</h1>
                         }
                     </div>
                     <hr />

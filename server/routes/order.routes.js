@@ -23,7 +23,7 @@ router.post("/",isAuth,async (req,res) => {
         res.status(201).json({message: 'Order created successfully!',order: createdOrder})
     }
     catch(e) {
-        res.status(500).json({error: e.writeErrors[0].errmsg})
+        res.status(500).json(e)
     }
 })
 
@@ -36,7 +36,7 @@ router.get("/:id",isAuth, async (req,res) => {
         res.send(order)
     }
     catch(e) {
-        res.status(500).send({error: e.writeErrors[0].errmsg})
+        res.status(500).send(e)
     }
 })
 
@@ -59,7 +59,21 @@ router.put("/:id/pay",isAuth,async (req,res) => {
         res.send({message: "Order updated successfully",order: updatedOrder})
     }
     catch(e) {
-        res.status(500).send({error: e.writeErrors[0].errmsg})
+        res.status(500).send(e)
+    }
+})
+
+
+router.get("/exect/my",isAuth,async (req,res) => {
+    try {
+        const orders = await orderModal.find({user: req.user._id})
+        if(!orders) {
+            return res.status(404).send({message: "Orders not found"})
+        }
+        res.send(orders)
+    }
+    catch(e) {
+        res.status(500).send(e)
     }
 })
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import shoppingBag from "../../Assets/shopping-bag.svg"
 import shoppingCart from "../../Assets/shopping-cart.svg"
+import headphone from "../../Assets/headphones.svg"
 import {useDispatch, useSelector} from "react-redux"
 import menu from "../../Assets/menu.svg"
 import {Link} from "react-router-dom"
@@ -58,8 +59,8 @@ function Header() {
                     hover:bg-hoverBlackBg transition 
                     duration-200 flex transform 
                     scale-90 h-full items-center" to="/return-and-orders">
-                      <img className="mr-2 w-8"  src={shoppingBag} alt="shopping bag" />
-                      <span className="">Services List</span>
+                      <img className="mr-2 w-8"  src={headphone} alt="shopping bag" />
+                      <span className="">Coustmer Services</span>
                       </Link>
                 </li>
                 <li className="h-3/5">
@@ -79,24 +80,28 @@ function Header() {
                                   </span>
                               </Link>
                         ):(
-                            <Link className="
+                            <button className="
                                 text-2xl px-6 rounded-lg  
                                 hover:bg-hoverBlackBg transition 
                                 duration-200 flex transform 
                                 scale-90 h-full items-center profile-tab relative" to="#">
                                     <div className="fixed w-80 py-3  rounded-xl shadow-sm drop-down">
-                                        <button type="button" className="py-3 pr-3 pl-6 w-full text-gray-800 font-black flex items-center opacity-60" to="#signout" onClick={signOutHandler}>
+                                        <Link type="button" className="py-3 pr-3 pl-6 w-full text-gray-800 font-black flex items-center opacity-60 hover:opacity-30 transition duration-200" to="/orderHistory">
+                                        <img className="-ml-2 mr-2 w-8"  src={shoppingBag} alt="shopping bag" /><span>Orders</span>
+                                        </Link>
+                                        <hr />
+                                        <button type="button" className="py-3 pr-3 pl-6 w-full text-gray-800 font-black flex items-center opacity-60 hover:opacity-30 transition duration-200" onClick={signOutHandler}>
                                             <img className="w-6 mr-2" src={signOut} alt="singout " /><span>Sign Out</span>
                                         </button>
                                     </div>
                                   <img className="mr-2 w-6"  src={menu} alt="menu cart" />
-                                  <span className="">
+                                  <span className="text-white text-opacity-60">
                                     {
                                         userInfo.name 
                                     }
                                   </span>
                                   <img className="-ml-0.5 transform scale-75 transition duration-300" src={caretDown} alt="caret down" />
-                              </Link>
+                              </button>
                         )
                     }
                 </li>
