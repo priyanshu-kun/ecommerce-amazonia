@@ -9,7 +9,11 @@ import {
     USER_SIGNUP_FAILURE,
     ME_REQUEST,
     ME_SUCCESS,
-    ME_FAILURE
+    ME_FAILURE,
+    UPDATE_USER_PROFILE_REQUEST,
+    UPDATE_USER_PROFILE_SUCCESS,
+    UPDATE_USER_PROFILE_FAILURE,
+    UPDATE_USER_PROFILE_RESET
 } from "../Constants/constants";
 
 
@@ -48,6 +52,20 @@ export const getMeReducer = (state = {},action) => {
             return {loading: false,user: action.payload}
         case ME_FAILURE:
             return {loading: false,error: action.payload}
+        default:
+            return state;
+    }
+}
+export const updateUserProfileReducer = (state = {},action) => {
+    switch (action.type) {
+        case UPDATE_USER_PROFILE_REQUEST:
+            return {loading: true}
+        case UPDATE_USER_PROFILE_SUCCESS:
+            return {loading: false,success: true}
+        case UPDATE_USER_PROFILE_FAILURE:
+            return {loading: false,error: action.payload}
+        case UPDATE_USER_PROFILE_RESET:
+            return {}
         default:
             return state;
     }

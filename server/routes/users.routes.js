@@ -3,7 +3,8 @@ const express = require("express");
 const userResponse = require("../ServerSeed/user.seed")
 const userModal = require("../models/users.model")
 const bcrypt = require("bcryptjs");
-const  {generateTokens} = require("../utils");
+const  {generateTokens, isAuth} = require("../utils");
+
 const router = express.Router()
 
 router.get("/seed",async (req,res) => {
@@ -66,13 +67,39 @@ router.post("/signup",async (req,res) => {
     }
 })
 
-router.get("/:id",async (req,res) => {
+router.get("/:id",isAuth,async (req,res) => {
     try {
         const user = await userModal.findById(req.params.id)
         if(!user) {
             return res.status(404).send({message: "user not found"})
         }
         res.send(user)
+    }
+    catch(e) {
+        res.status(500).json(e)
+    }
+})
+
+router.put("/update/me",async (req,res) => {
+    try {
+        console.log(req.body)
+        const user = await userModal.findById(req.body.userId);
+        if(!user) {
+            return res.status(404).send({message: "Can't able to update user"})
+        }
+        user.name = req.body.name || user.name
+        user.email = req.body.email || user.email
+        if(req.body.password) {
+            user.password = bcrypt.hashSync(req.body.password,12)
+        }
+        const updatedUser = await user.save();
+        res.send({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+            token: generateTokens(updatedUser)
+        })
     }
     catch(e) {
         res.status(500).json(e)

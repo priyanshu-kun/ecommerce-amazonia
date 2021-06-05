@@ -17,6 +17,7 @@ import './App.css';
 import OrderDetails from "./Pages/orderDetails/OrderDetails";
 import OrderHistory from "./Pages/orderHistory/OrderHistory";
 import Profile from "./Pages/profile/Profile";
+import PrivateRoute from "./Components/PrivateRoute.js"
 
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
             <Route path="/orderPlaced" exact render={(props) => <PlaceOrder  {...props} />} />
             <Route path="/orderDetails/:id" exact render={(props) => <OrderDetails  {...props} />} />
             <Route path="/orderHistory" exact render={(props) => <OrderHistory  {...props} />} />
-            <Route path="/me" exact render={(props) => <Profile  {...props} />} />
+            <PrivateRoute path="/me" exact component={Profile} />
             <Route path="*" exact component={Page404} />
           </Switch>
         </main>

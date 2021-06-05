@@ -1,6 +1,9 @@
 .profile-heading {
     font-family: 'SF-Pro-Display-Black.otf';
     position: relative;
+    /* background-color: red; */
+    width: fit-content;
+    margin: auto;
 }
 
 .profile-heading::before {
@@ -9,7 +12,7 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 15%;
+    width: 110%;
     height: 0;
     background-color: #10B981;
     z-index: -1;
