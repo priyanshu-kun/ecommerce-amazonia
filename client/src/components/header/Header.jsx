@@ -1,6 +1,7 @@
 import React from 'react'
 import shoppingBag from "../../Assets/shopping-bag.svg"
 import shoppingCart from "../../Assets/shopping-cart.svg"
+import User from "../../Assets/user.svg"
 import headphone from "../../Assets/headphones.svg"
 import {useDispatch, useSelector} from "react-redux"
 import menu from "../../Assets/menu.svg"
@@ -86,6 +87,9 @@ function Header() {
                                 duration-200 flex transform 
                                 scale-90 h-full items-center profile-tab relative" to="#">
                                     <div className="fixed w-80 py-3  rounded-xl shadow-sm drop-down">
+                                    <Link type="button" className="py-3 pr-3 pl-6 w-full text-gray-800 font-black flex items-center opacity-60 hover:opacity-30 transition duration-200" to="/me">
+                                        <img className="-ml-2 mr-2 w-8"  src={User} alt="shopping bag" /><span>Profile</span>
+                                        </Link>
                                         <Link type="button" className="py-3 pr-3 pl-6 w-full text-gray-800 font-black flex items-center opacity-60 hover:opacity-30 transition duration-200" to="/orderHistory">
                                         <img className="-ml-2 mr-2 w-8"  src={shoppingBag} alt="shopping bag" /><span>Orders</span>
                                         </Link>

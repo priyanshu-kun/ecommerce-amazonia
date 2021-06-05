@@ -66,4 +66,17 @@ router.post("/signup",async (req,res) => {
     }
 })
 
+router.get("/:id",async (req,res) => {
+    try {
+        const user = await userModal.findById(req.params.id)
+        if(!user) {
+            return res.status(404).send({message: "user not found"})
+        }
+        res.send(user)
+    }
+    catch(e) {
+        res.status(500).json(e)
+    }
+})
+
 module.exports = router;

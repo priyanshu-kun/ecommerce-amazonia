@@ -82,3 +82,12 @@ export const ORDER_DETAILS_FAILURE = "ORDER_DETAILS_FAILURE"
 export const MY_ORDERLIST_REQUEST = "MY_ORDERLIST_REQUEST" 
 export const MY_ORDERLIST_SUCCESS = "MY_ORDERLIST_SUCCESS"
 export const MY_ORDERLIST_FAILURE = "MY_ORDERLIST_FAILURE"
+
+
+/**
+ * get user profile
+ */
+
+export const ME_REQUEST = "ME_REQUEST"
+export const ME_SUCCESS = "ME_SUCCESS"
+export const ME_FAILURE = "ME_FAILURE"

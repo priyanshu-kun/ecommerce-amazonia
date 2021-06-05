@@ -6,7 +6,10 @@ import {
     USER_SIGNOUT,
     USER_SIGNUP_REQUEST,
     USER_SIGNUP_SUCCESS,
-    USER_SIGNUP_FAILURE
+    USER_SIGNUP_FAILURE,
+    ME_REQUEST,
+    ME_SUCCESS,
+    ME_FAILURE
 } from "../Constants/constants"
 
 export const userSignIn = ({email,password}) => async (dispatch) => {
@@ -76,4 +79,27 @@ export const userSignout = () => async (dispatch) => {
     dispatch({
         type: USER_SIGNOUT
     })
+}
+
+export const getMeAction = (id) => async (dispatch,getState) => {
+    dispatch({type: ME_REQUEST})
+    try {
+        const {signIn: userInfo} = getState();
+        const {data} = await Axios(`http://localhost:8080/api/users/${id}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${userInfo.userInfo.token}`
+            }
+        })
+        dispatch({
+            type: ME_SUCCESS,
+            payload: data
+        })
+   }
+   catch(e) {
+    dispatch({
+        type: ME_FAILURE,
+        payload: e.response.data.message ? {msg: e.response.data.message} : {msg: "ERROR: failed to get user"}
+    })
+   }
 }

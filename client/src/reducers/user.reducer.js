@@ -6,7 +6,10 @@ import {
     USER_SIGNOUT,
     USER_SIGNUP_REQUEST,
     USER_SIGNUP_SUCCESS,
-    USER_SIGNUP_FAILURE
+    USER_SIGNUP_FAILURE,
+    ME_REQUEST,
+    ME_SUCCESS,
+    ME_FAILURE
 } from "../Constants/constants";
 
 
@@ -31,6 +34,19 @@ export const userSignUpReducer = (state = {},action) => {
         case USER_SIGNUP_SUCCESS:
             return {loading: false,userInfo: action.payload}
         case USER_SIGNUP_FAILURE:
+            return {loading: false,error: action.payload}
+        default:
+            return state;
+    }
+}
+
+export const getMeReducer = (state = {},action) => {
+    switch (action.type) {
+        case ME_REQUEST:
+            return {loading: true}
+        case ME_SUCCESS:
+            return {loading: false,user: action.payload}
+        case ME_FAILURE:
             return {loading: false,error: action.payload}
         default:
             return state;
