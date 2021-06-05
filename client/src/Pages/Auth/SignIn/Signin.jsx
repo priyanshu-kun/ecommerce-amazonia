@@ -58,7 +58,7 @@ function Signin({ history, location }) {
 
                         <button className="w-full border border-green-500  py-6 text-center rounded-xl text-green-500 transition duration-200 hover:opacity-30" type="button" onClick={(e) => {
                             e.preventDefault()
-                            const guestCradentials = { email: "admin@guest.google.com", password: "guest" }
+                            const guestCradentials = { email: "jhon-wick@example.google.com", password: "jhon-wick" }
                             dispatch(userSignIn(guestCradentials))
                         }}>Guest Login</button>
                     </div>
