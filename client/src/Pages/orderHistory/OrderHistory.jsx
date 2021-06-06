@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux"
 import circles from "../../Assets/Circles-menu-3.gif"
 import { MyOrdersList } from "../../Actions/order.action"
+import MessageBox from "../../Components/MessageBox"
 import "./orderHistory.css"
 import { Link } from 'react-router-dom'
 
@@ -23,8 +24,12 @@ function OrderHistory({ history }) {
                         <img className="w-12" src={circles} alt="preloader" />
                     </div>
                 ) : (
-                    !orders.length ? <h1 className="bg-red-100 text-red-600 py-6 mt-3 text-center rounded-lg mb-3">
-                        There is nothing to show <Link className="text-green-500 underline ml-3" to="/">Go to home page</Link> </h1>:
+                    !orders.length ? (
+                        <MessageBox>
+                            There is nothing to show <Link 
+                            className="text-green-700 underline ml-2" to="/">Go back to home page</Link>
+                        </MessageBox>
+                    ):
                     error ? <h1 className="bg-red-100 text-red-600 py-6 mt-3 text-center rounded-lg mb-3">{error.message}</h1> : (
                         <div className="flex flex-col mt-6 bg">
                             <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

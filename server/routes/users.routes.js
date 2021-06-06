@@ -9,7 +9,7 @@ const router = express.Router()
 
 router.get("/seed",async (req,res) => {
    try {
-    // await userModal.deleteMany({})
+    await userModal.deleteMany({})
     const createdUsers = await userModal.insertMany(userResponse.users)
     res.send({createdUsers})
    }
@@ -69,6 +69,7 @@ router.post("/signup",async (req,res) => {
 
 router.get("/:id",isAuth,async (req,res) => {
     try {
+        console.log(req.params.id)
         const user = await userModal.findById(req.params.id)
         if(!user) {
             return res.status(404).send({message: "user not found"})
