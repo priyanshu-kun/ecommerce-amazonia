@@ -1,2 +1,2 @@
 # ecommerce-amazonia
-work in progress 🛒🛠
+complete
