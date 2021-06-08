@@ -25,7 +25,7 @@ function OrderDetails({match:{params:{id}}}) {
     useEffect(() => {
         const addPayPalScript = async () => {
             try {
-                const {data} = await axios.get("/api/config/paypal")
+                const {data} = await axios.get("http://localhost:8080/api/config/paypal")
                 const script = document.createElement("script");
                 script.type = 'text/javascript'
                 script.src = `https://www.paypal.com/sdk/js?client-id=${data}`

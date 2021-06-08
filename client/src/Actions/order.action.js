@@ -94,7 +94,7 @@ export const MyOrdersList = () => async (dispatch,getState) => {
     })
     try {
         const {signIn: userInfo} = getState();
-        const {data} = await Axios.get("/api/order/exect/my",{
+        const {data} = await Axios.get("http://localhost:8080/api/order/exect/my",{
             headers: {
                 Authorization: `Bearer ${userInfo.userInfo.token}`
             }
