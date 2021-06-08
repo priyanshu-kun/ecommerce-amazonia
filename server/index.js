@@ -3,6 +3,7 @@ const express = require("express");
 require("./DB/db.config")
 const app = express();
 const cors = require("cors");
+const path = require("path")
 const port  = process.env.PORT || 8080;
 
 app.use(express.json());
@@ -24,6 +25,19 @@ app.use("/api/config/paypal",(req,res) => {
 app.get("/",(req,res) => {
     res.send("Server is ready!")
 })
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+
+    // Set static folder
+    // All the javascript and css files will be read and served from this folder
+    app.use(express.static("client/build"));
+  
+    // index.html for all page routes  html or routing and naviagtion
+    app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
+    });
+  }
 
 app.listen(port, () => {
     console.log("App is alive on http://localhost:"+port);
