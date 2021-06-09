@@ -63,8 +63,8 @@ function Signin({ history, location }) {
                         }}>Guest Login</button>
                     </div>
                 </form>
-                <div className="mt-3">
-                    <span className="opacity-60 text-base">Don't have a account: </span>
+                <div className="mt-6">
+                    <span className="opacity-60 text-base">Don't have an account: </span>
                     <Link className="text-green-500 uppercase font-black text-xl" to="/signup">Please sign Up</Link>
                 </div>
             </div>

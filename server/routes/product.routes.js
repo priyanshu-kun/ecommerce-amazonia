@@ -40,7 +40,7 @@ router.get("/seed",async (req,res) => {
 router.get("/",async (req,res) => {
     try {
         const products = await productModal.find({});
-      console.log("server products: ",products)
+         console.log("server products: ",products)
         res.json(products);
     }
     catch(e) {

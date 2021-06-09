@@ -127,12 +127,12 @@ function Register({history,location}) {
                     </label>
                     <div className="mt-8 w-full">
                         <button 
-                        className="w-full bg-green-500 py-6 mb-4 
+                        className="w-full bg-green-500 py-6 
                         text-center rounded-xl text-white transition 
                         duration-200 hover:bg-green-700" type="submit">Submit</button>
                     </div>
                 </form>
-                <div>
+                <div className="mt-6">
                     <span className="opacity-60 text-base">Already have account: </span>
                     <Link className="text-green-500 uppercase font-black text-xl" to="signin">Please sign In</Link>
                 </div>

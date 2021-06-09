@@ -4,7 +4,7 @@ import "./footer.css"
 function Footer() {
     return (
         <footer className="bg-dark grid place-items-center text-xl">
-            <span className="opacity-60">All right reversed &copy; 2021</span>
+            <span className="opacity-60">All right reserved &copy; 2021</span>
         </footer>
     )
 }
