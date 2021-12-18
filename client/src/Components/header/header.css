@@ -1,0 +1,48 @@
+.nav-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  z-index: -1;
+  background-color: rgb(0, 1, 1, 0.9);
+}
+
+.cart-label {
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: red;
+  border: 2px solid red;
+  color: #fff;
+  text-align: center;
+
+  font-size: 10px;
+}
+
+.profile-tab:hover img:last-child {
+  transform: scale(0.75) rotate(180deg);
+}
+
+
+.drop-down {
+  left: 50%;
+  transform: translateX(-50%) scale(0.3);
+  visibility: hidden;
+  border: 1px solid rgba(0,0,0,0.1);
+  background-color: #fff;
+  top: 3rem;
+}
+
+.profile-tab:hover .drop-down {
+  transition: all 0.1s ease;
+  transform: translateX(-50%) scale(1);
+  visibility: visible;
+}

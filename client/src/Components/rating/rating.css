@@ -1,0 +1,9 @@
+/* Rating */
+.rating span {
+    color: gold;
+    margin: 0.1rem;
+}
+
+.rating span:last-child {
+    color: rgb(0, 0, 0,0.3);
+}

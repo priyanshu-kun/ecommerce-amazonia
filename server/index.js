@@ -9,7 +9,7 @@ const port  = process.env.PORT || 8080;
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 app.use(cors({
-    origin: ["https://sleepy-fermi-ce69ee.netlify.app","http://localhost:3000"], 
+    origin: ["https://condescending-engelbart-cde5d8.netlify.app","http://localhost:3000"], 
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     preflightContinue: false,
