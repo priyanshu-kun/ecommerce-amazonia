@@ -24,7 +24,7 @@ export const userSignIn = ({email,password}) => async (dispatch) => {
         }
     })
     try {
-        const {data} = await Axios("https://amazonia-ecommerce.herokuapp.com/api/users/signin", {
+        const {data} = await Axios("https://priyanshu-amazonia.herokuapp.com/api/users/signin", {
             method: "POST",
             data: {email,password}
         })
@@ -54,7 +54,7 @@ export const userSignUp = ({name,email,password}) => async (dispatch) => {
         }
     })
    try {
-        const {data} = await Axios("https://amazonia-ecommerce.herokuapp.com/api/users/signup", {
+        const {data} = await Axios("https://priyanshu-amazonia.herokuapp.com/api/users/signup", {
             method: "POST",
             data: {name,email,password}
         })
@@ -88,7 +88,7 @@ export const getMeAction = (id) => async (dispatch,getState) => {
     dispatch({type: ME_REQUEST})
     try {
         const {signIn: userInfo} = getState();
-        const {data} = await Axios(`https://amazonia-ecommerce.herokuapp.com/api/users/${id}`, {
+        const {data} = await Axios(`https://priyanshu-amazonia.herokuapp.com/api/users/${id}`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${userInfo.userInfo.token}`
@@ -110,7 +110,7 @@ export const updateUserProfile = (userData) => async (dispatch,getState) => {
     dispatch({type: UPDATE_USER_PROFILE_REQUEST})
     try {
         const {signIn: userInfo} = getState();
-        const {data} = await Axios(`https://amazonia-ecommerce.herokuapp.com/api/users/update/me`, {
+        const {data} = await Axios(`https://priyanshu-amazonia.herokuapp.com/api/users/update/me`, {
             method: "PUT",
             data: userData,
             headers: {

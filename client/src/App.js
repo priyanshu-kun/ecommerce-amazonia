@@ -26,6 +26,7 @@ function App() {
   const { error={},loading=true,products=[] } = getProductList;
 
   useEffect(() => {
+    console.log("let's see")
     dispatch(listProducts());
      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

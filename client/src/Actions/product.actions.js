@@ -6,13 +6,14 @@ import {
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAILURE } from "../Constants/constants"
 import Axios from "axios"
+import axios from "axios"
 
 export const listProducts = () => async (dispatch) => {
     dispatch({
         type: PRODUCT_LIST_REQUEST
     })
     try {
-        let {data} = await Axios.get("https://amazonia-ecommerce.herokuapp.com/api/products");
+        let {data} = await axios.get("https://priyanshu-amazonia.herokuapp.com/api/products/");
         if(!data) {
             throw new Error()
         } 
@@ -39,7 +40,7 @@ export const productDetails = (product_id) => async (dispatch) => {
         payload: product_id
     })
     try {
-        let {data} = await Axios.get(`https://amazonia-ecommerce.herokuapp.com/api/products/${product_id}`);
+        let {data} = await Axios.get(`https://priyanshu-amazonia.herokuapp.com/api/products/${product_id}`);
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
             payload: data

@@ -9,7 +9,7 @@ export const createOrder = (orderItems) => async (dispatch,getState) => {
     try {
         const {signIn: userInfo} = getState();
         console.log(userInfo.userInfo.token)
-        const {data} = await Axios.post("https://amazonia-ecommerce.herokuapp.com/api/order",{orderItems},{
+        const {data} = await Axios.post("http://localhost:8080/api/order",{orderItems},{
             headers: {
                 Authorization: `Bearer ${userInfo.userInfo.token}`
             }
@@ -37,7 +37,7 @@ export const detailsOrder = (id) => async (dispatch,getState) => {
     })
     try {
         const {signIn: userInfo} = getState();
-        const {data} = await Axios.get(`https://amazonia-ecommerce.herokuapp.com/api/order/${id}`,{
+        const {data} = await Axios.get(`http://localhost:8080/api/order/${id}`,{
             headers: {
                 Authorization: `Bearer ${userInfo.userInfo.token}`
             }
@@ -67,7 +67,7 @@ export const payOrder = (order,paymentResult) => async (dispatch,getState) => {
             }
         })
         const {signIn: userInfo} = getState();
-        const {data} = await Axios.put(`https://amazonia-ecommerce.herokuapp.com/api/order/${order._id}/pay`,paymentResult,{
+        const {data} = await Axios.put(`http://localhost:8080/api/order/${order._id}/pay`,paymentResult,{
             headers: {
                 Authorization: `Bearer ${userInfo.userInfo.token}`
             }
@@ -94,7 +94,7 @@ export const MyOrdersList = () => async (dispatch,getState) => {
     })
     try {
         const {signIn: userInfo} = getState();
-        const {data} = await Axios.get("https://amazonia-ecommerce.herokuapp.com/api/order/exect/my",{
+        const {data} = await Axios.get("http://localhost:8080/api/order/exect/my",{
             headers: {
                 Authorization: `Bearer ${userInfo.userInfo.token}`
             }

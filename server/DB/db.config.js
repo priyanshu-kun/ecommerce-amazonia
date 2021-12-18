@@ -1,15 +1,14 @@
-const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/amazonia",
-    {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useFindAndModify: true,
-        useUnifiedTopology: true
+const mongoose = require("mongoose")
+
+function DBConnect() {
+    const DB_URL = process.env.MONGO_URI || "mongodb://localhost:27017/amazonia"
+    mongoose.connect(DB_URL,{ useUnifiedTopology: true } )
+    const db = mongoose.connection
+    db.on("error", console.error.bind(console, "connection error:"))
+    db.once('open', () => {
+        console.log("DB connected...")
     })
-    .then(() => {
-        console.log("DATABASE - connect successfully with server")
-    })
-    .catch(e => {
-        console.log(e)
-    })
+}
+
+module.exports = DBConnect
