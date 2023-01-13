@@ -12,7 +12,6 @@ router.get("/seed",async (req,res) => {
             return res.json({products})
         }
         let data = await productSeed()
-        console.log(data)
         if(!data) {
             throw new Error();
         }
@@ -40,9 +39,7 @@ router.get("/seed",async (req,res) => {
 
 router.get("/",async (req,res) => {
     try {
-        console.log("kaboom you are here!")
         const products = await productModal.find({});
-         console.log("server products: ",products)
         res.json(products);
     }
     catch(e) {

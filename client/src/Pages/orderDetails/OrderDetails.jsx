@@ -18,14 +18,13 @@ function OrderDetails({match:{params:{id}}}) {
     const dispatch = useDispatch();
 
     const handleSuccessHandler = (paymentResult) => {
-        console.log("paymentResult: ",paymentResult)
         dispatch(payOrder(order,paymentResult))
     }
 
     useEffect(() => {
         const addPayPalScript = async () => {
             try {
-                const {data} = await axios.get("https://amazonia-ecommerce.herokuapp.com/api/config/paypal")
+                const {data} = await axios.get("http://localhost:8080/api/config/paypal")
                 const script = document.createElement("script");
                 script.type = 'text/javascript'
                 script.src = `https://www.paypal.com/sdk/js?client-id=${data}`

@@ -9,7 +9,7 @@ const port  = process.env.PORT || 8080;
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 app.use(cors({
-    origin: ["https://condescending-engelbart-cde5d8.netlify.app","http://localhost:3000"], 
+    origin: ["*","https://condescending-engelbart-cde5d8.netlify.app","http://localhost:3000"], 
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     preflightContinue: false,
@@ -23,9 +23,6 @@ app.use("/api/config/paypal",(req,res) => {
     res.send(process.env.PAYPAL_CLIENT_ID || 'sb')
 })
 
-app.get("/",(req,res) => {
-    res.send("Server is ready!")
-})
 
 // Serve static assets if in production
 //if (process.env.NODE_ENV === "production") {
